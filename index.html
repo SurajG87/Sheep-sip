@@ -53,14 +53,14 @@
             position: relative;
         }
 
-        /* Mobile Menu Button - Burger Icon Only with Black Sheep Logo */
+        /* Mobile Menu Button - Burger Icon Only (No Logo) */
         .mobile-menu-btn {
             display: none;
             position: fixed;
             top: 1rem;
             left: 1rem;
             z-index: 1002;
-            background: var(--sheep-black);
+            background: var(--accent);
             color: var(--white);
             padding: 0.75rem 1rem;
             border-radius: 10px;
@@ -68,26 +68,11 @@
             font-size: 1.25rem;
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .mobile-sheep-logo {
-            width: 24px;
-            height: 24px;
-            background: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--sheep-black);
-            font-size: 0.875rem;
         }
 
         @media (max-width: 768px) {
             .mobile-menu-btn {
-                display: flex;
+                display: block;
             }
         }
 
@@ -201,6 +186,7 @@
         .content-wrapper {
             max-width: 1600px;
             margin: 0 auto;
+            position: relative;
         }
 
         /* Header */
@@ -222,6 +208,107 @@
             gap: 1rem;
         }
 
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: var(--white);
+            border-radius: 50px;
+            padding: 0.5rem 1rem;
+            width: 400px;
+            max-width: 100%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .search-container i {
+            color: var(--gray);
+            margin-right: 0.5rem;
+        }
+
+        .search-container input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 0.95rem;
+            background: transparent;
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            margin-top: 0.5rem;
+        }
+
+        .search-result-item {
+            padding: 1rem;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .search-result-item:hover {
+            background: rgba(230,126,34,0.1);
+        }
+
+        .search-result-category {
+            font-size: 0.7rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        /* Alphabet Navigation */
+        .alphabet-nav {
+            position: sticky;
+            top: 2rem;
+            right: 0;
+            float: right;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            background: var(--white);
+            padding: 1rem 0.5rem;
+            border-radius: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-left: 1rem;
+            z-index: 10;
+        }
+
+        .alphabet-letter {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .alphabet-letter:hover {
+            background: rgba(230,126,34,0.1);
+            color: var(--accent);
+        }
+
+        .alphabet-letter.active {
+            background: var(--accent);
+            color: white;
+        }
+
         .back-button {
             display: flex;
             align-items: center;
@@ -238,6 +325,17 @@
         .back-button:hover {
             background: var(--light);
             transform: translateX(-4px);
+        }
+
+        /* Classic Cocktails Layout */
+        .classic-container {
+            display: flex;
+            gap: 2rem;
+            position: relative;
+        }
+
+        .classic-content {
+            flex: 1;
         }
 
         /* PDF Preview Modal */
@@ -635,6 +733,22 @@
             color: white;
         }
 
+        .edit-btn {
+            background: none;
+            border: 1px solid var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: var(--primary);
+        }
+
+        .edit-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
         /* Cocktail Detail Page */
         .cocktail-detail {
             background: var(--white);
@@ -1012,6 +1126,16 @@
             color: #2980b9;
         }
 
+        .serving-note {
+            background: rgba(39, 174, 96, 0.1);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            margin-top: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--success);
+            font-weight: 600;
+        }
+
         /* Method & Notes Section */
         .method-section {
             background: rgba(44,62,80,0.02);
@@ -1048,6 +1172,11 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary);
+        }
+
+        .overview-title i {
+            color: var(--accent);
+            margin-right: 0.5rem;
         }
 
         .overview-actions {
@@ -1299,15 +1428,29 @@
                 flex-direction: column;
                 width: 100%;
             }
+
+            .classic-container {
+                flex-direction: column;
+            }
+
+            .alphabet-nav {
+                position: fixed;
+                bottom: 1rem;
+                right: 1rem;
+                flex-direction: row;
+                flex-wrap: wrap;
+                max-width: 300px;
+                background: var(--white);
+                padding: 0.75rem;
+                border-radius: 30px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Mobile Menu Button - Burger Icon with Black Sheep Logo -->
+    <!-- Mobile Menu Button - Burger Icon Only (No Logo) -->
     <button class="mobile-menu-btn" id="mobileMenuBtn">
-        <div class="mobile-sheep-logo">
-            <i class="fas fa-sheep"></i>
-        </div>
         <i class="fas fa-bars"></i>
     </button>
 
@@ -1477,7 +1620,8 @@
                             <th style="padding: 0.75rem; text-align: left;">Ingredient</th>
                             <th style="padding: 0.75rem; text-align: left;">Bottle (ml)</th>
                             <th style="padding: 0.75rem; text-align: left;">Cost ($)</th>
-                            <th style="padding: 0.75rem; text-align: left;">Pour (ml)</th>
+                            <th style="padding: 0.75rem; text-align: left;">Pour</th>
+                            <th style="padding: 0.75rem; text-align: left;">Unit</th>
                             <th style="padding: 0.75rem; text-align: left;">Pour Cost</th>
                             <th style="padding: 0.75rem; text-align: left;">ABV %</th>
                             <th style="padding: 0.75rem; text-align: left;"></th>
@@ -1492,6 +1636,12 @@
                             <td><input type="number" placeholder="750" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientCost(this)" required></td>
                             <td><input type="number" placeholder="0" step="0.01" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientCost(this)" required></td>
                             <td><input type="number" placeholder="50" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientCost(this)" required></td>
+                            <td>
+                                <select style="width: 100%; padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;" onchange="convertUnit(this)">
+                                    <option value="ml">ml</option>
+                                    <option value="dash">dash</option>
+                                </select>
+                            </td>
                             <td><input type="number" placeholder="0.00" step="0.001" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="pour-cost"></td>
                             <td><input type="number" placeholder="40" step="0.1" min="0" max="100" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientABV(this)" required></td>
                             <td><button type="button" onclick="removeIngredientRow(this)" style="background: none; border: none; color: var(--danger);"><i class="fas fa-trash"></i></button></td>
@@ -1512,7 +1662,7 @@
                     
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
                         <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            <input type="radio" name="dilutionPreset" id="dilutionShake" value="shake" checked style="accent-color: var(--accent);">
+                            <input type="radio" name="dilutionPreset" id="dilutionShake" value="shake" style="accent-color: var(--accent);">
                             <label for="dilutionShake" style="font-weight: 500;">Shake <span style="color: var(--accent); font-weight: 700;">25%</span></label>
                         </div>
                         <div style="display: flex; align-items: center; gap: 0.5rem;">
@@ -1526,6 +1676,10 @@
                         <div style="display: flex; align-items: center; gap: 0.5rem;">
                             <input type="radio" name="dilutionPreset" id="dilutionBlend" value="blend" style="accent-color: var(--accent);">
                             <label for="dilutionBlend" style="font-weight: 500;">Blend <span style="color: var(--accent); font-weight: 700;">50%</span></label>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <input type="radio" name="dilutionPreset" id="dilutionNone" value="none" checked style="accent-color: var(--accent);">
+                            <label for="dilutionNone" style="font-weight: 500;">No Dilution <span style="color: var(--accent); font-weight: 700;">0%</span></label>
                         </div>
                     </div>
                     
@@ -1564,6 +1718,309 @@
         </div>
     </div>
 
+    <!-- Add Infusion Modal - Same Template as Add Cocktail (Removed cocktail-specific fields) -->
+    <div id="addInfusionModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
+        <div class="modal-content" style="background: var(--white); border-radius: 24px; padding: 2rem; max-width: 1000px; width: 95%; max-height: 90vh; overflow-y: auto;">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <i class="fas fa-flask"></i> New Infusion
+                </h2>
+                <button class="modal-close" onclick="closeModal('addInfusionModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="newInfusionForm" onsubmit="saveNewInfusion(event)">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" id="infusionName" class="form-input" placeholder="e.g., Spiced Pineapple Infusion" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <input list="infusionCategories" id="infusionCategory" class="form-input" placeholder="e.g., Rum, Gin, Vodka">
+                        <datalist id="infusionCategories">
+                            <option value="Rum">
+                            <option value="Gin">
+                            <option value="Vodka">
+                            <option value="Whiskey">
+                            <option value="Tequila">
+                        </datalist>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Base Spirit</label>
+                        <input type="text" id="infusionBase" class="form-input" placeholder="e.g., Plantation 3 Star" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Author</label>
+                        <input type="text" id="infusionAuthor" class="form-input" placeholder="e.g., Bar Manager" value="Bar Manager" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date</label>
+                        <input type="text" id="infusionDate" class="form-input" value="${new Date().toLocaleDateString()}" readonly style="background: var(--light);">
+                    </div>
+                </div>
+
+                <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem;">
+                    <i class="fas fa-flask"></i> Recipe Ingredients
+                </h3>
+                
+                <table class="ingredient-table" style="width: 100%; border-collapse: collapse; margin-bottom: 1rem;">
+                    <thead>
+                        <tr style="background: var(--light);">
+                            <th style="padding: 0.75rem; text-align: left;">Ingredient</th>
+                            <th style="padding: 0.75rem; text-align: left;">Bottle (ml)</th>
+                            <th style="padding: 0.75rem; text-align: left;">Cost ($)</th>
+                            <th style="padding: 0.75rem; text-align: left;">Pour (ml)</th>
+                            <th style="padding: 0.75rem; text-align: left;">Pour Cost</th>
+                            <th style="padding: 0.75rem; text-align: left;">ABV %</th>
+                            <th style="padding: 0.75rem; text-align: left;">Scaling</th>
+                            <th style="padding: 0.75rem; text-align: left;">Scaled Pour</th>
+                            <th style="padding: 0.75rem; text-align: left;"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="infusionIngredientTableBody">
+                        <tr class="infusion-ingredient-row">
+                            <td><input type="text" placeholder="Ingredient" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionIngredientCost(this)" required></td>
+                            <td><input type="number" placeholder="500" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionIngredientCost(this)" required></td>
+                            <td><input type="number" placeholder="0" step="0.01" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionIngredientCost(this)" required></td>
+                            <td><input type="number" placeholder="50" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionIngredientCost(this)" required></td>
+                            <td><input type="number" placeholder="0.00" step="0.001" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="infusion-pour-cost"></td>
+                            <td><input type="number" placeholder="47" step="0.1" min="0" max="100" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionTotalABV(this)" required></td>
+                            <td><input type="number" class="infusion-scaling" value="3" min="0.1" step="0.1" style="width: 80px; padding: 0.5rem;" onchange="calculateInfusionScaling()"></td>
+                            <td><input type="number" placeholder="0" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="infusion-scaled-pour"></td>
+                            <td><button type="button" onclick="removeInfusionIngredientRow(this)" style="background: none; border: none; color: var(--danger);"><i class="fas fa-trash"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <button type="button" class="btn btn-outline" onclick="addInfusionIngredientRow()" style="margin-bottom: 1.5rem;">
+                    <i class="fas fa-plus"></i> Add Ingredient
+                </button>
+
+                <!-- Totals Row -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div class="form-group">
+                        <label class="form-label">Total Pour (ml)</label>
+                        <input type="number" id="infusionTotalPour" class="form-input" readonly style="background: var(--light);" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Total Pour Cost ($)</label>
+                        <input type="number" id="infusionTotalPourCost" class="form-input" readonly style="background: var(--light);" value="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Total Scaled Pour (ml)</label>
+                        <input type="number" id="infusionTotalScaledPour" class="form-input" readonly style="background: var(--light);" value="0">
+                    </div>
+                </div>
+
+                <!-- Scaling & Yield -->
+                <div style="background: rgba(230,126,34,0.05); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--accent);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <i class="fas fa-calculator" style="color: var(--accent);"></i>
+                        <h3 style="color: var(--primary); font-size: 1.1rem; font-weight: 600;">Scaling</h3>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+                        <div class="form-group">
+                            <label class="form-label">Global Scaling Factor</label>
+                            <input type="number" id="infusionGlobalScaling" class="form-input" value="3" min="0.1" step="0.1" onchange="updateInfusionScalingFactor()">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Yield (after 20% loss)</label>
+                            <input type="number" id="infusionYield" class="form-input" readonly style="background: var(--light);" value="0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Meta Data -->
+                <div style="background: rgba(44,62,80,0.02); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem;">
+                        <i class="fas fa-info-circle"></i> Meta Data
+                    </h3>
+                    
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label class="form-label">Used in these drinks</label>
+                        <input type="text" id="infusionUsedIn" class="form-input" placeholder="e.g., La Rochelle Martini, House Martini">
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label class="form-label">Instructions</label>
+                        <textarea id="infusionInstructions" class="form-input" placeholder="Detailed infusion instructions..." rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label class="form-label">Allergens</label>
+                        <input type="text" id="infusionAllergens" class="form-input" placeholder="e.g., Nuts, Dairy, Gluten...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Notes</label>
+                        <textarea id="infusionNotes" class="form-input" placeholder="Additional notes..." rows="2"></textarea>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" class="btn btn-outline" onclick="closeModal('addInfusionModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Infusion</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Add Distillation Modal - Same Template as Add Cocktail (Removed cocktail-specific fields) -->
+    <div id="addDistillationModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
+        <div class="modal-content" style="background: var(--white); border-radius: 24px; padding: 2rem; max-width: 1000px; width: 95%; max-height: 90vh; overflow-y: auto;">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <i class="fas fa-wine-bottle"></i> New Distillation
+                </h2>
+                <button class="modal-close" onclick="closeModal('addDistillationModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <form id="newDistillationForm" onsubmit="saveNewDistillation(event)">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div class="form-group">
+                        <label class="form-label">Name</label>
+                        <input type="text" id="distillationName" class="form-input" placeholder="e.g., House Gin" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Category</label>
+                        <input list="distillationCategories" id="distillationCategory" class="form-input" placeholder="e.g., Gin, Vodka, Whiskey">
+                        <datalist id="distillationCategories">
+                            <option value="Gin">
+                            <option value="Vodka">
+                            <option value="Whiskey">
+                            <option value="Rum">
+                        </datalist>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Base Spirit</label>
+                        <input type="text" id="distillationBase" class="form-input" placeholder="e.g., Neutral Spirit" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Target ABV (%)</label>
+                        <input type="number" id="distillationTargetABV" class="form-input" placeholder="47" step="0.1" min="0" max="100" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Author</label>
+                        <input type="text" id="distillationAuthor" class="form-input" placeholder="e.g., Head Distiller" value="Head Distiller" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Date</label>
+                        <input type="text" id="distillationDate" class="form-input" value="${new Date().toLocaleDateString()}" readonly style="background: var(--light);">
+                    </div>
+                </div>
+
+                <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem;">
+                    <i class="fas fa-flask"></i> Botanicals
+                </h3>
+                
+                <table class="ingredient-table" style="width: 100%; border-collapse: collapse; margin-bottom: 1rem;">
+                    <thead>
+                        <tr style="background: var(--light);">
+                            <th style="padding: 0.75rem; text-align: left;">Botanical</th>
+                            <th style="padding: 0.75rem; text-align: left;">Bottle (ml)</th>
+                            <th style="padding: 0.75rem; text-align: left;">Cost ($)</th>
+                            <th style="padding: 0.75rem; text-align: left;">Pour (ml)</th>
+                            <th style="padding: 0.75rem; text-align: left;">Pour Cost</th>
+                            <th style="padding: 0.75rem; text-align: left;">ABV %</th>
+                            <th style="padding: 0.75rem; text-align: left;">Scaling</th>
+                            <th style="padding: 0.75rem; text-align: left;">Scaled Pour</th>
+                            <th style="padding: 0.75rem; text-align: left;"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="distillationIngredientTableBody">
+                        <tr class="distillation-ingredient-row">
+                            <td><input type="text" placeholder="Juniper" style="width: 100%; padding: 0.5rem;" onchange="calculateDistillationIngredientCost(this)" required></td>
+                            <td><input type="number" placeholder="1000" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateDistillationIngredientCost(this)" required></td>
+                            <td><input type="number" placeholder="0" step="0.01" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateDistillationIngredientCost(this)" required></td>
+                            <td><input type="number" placeholder="30" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateDistillationIngredientCost(this)" required></td>
+                            <td><input type="number" placeholder="0.00" step="0.001" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="distillation-pour-cost"></td>
+                            <td><input type="number" placeholder="40" step="0.1" min="0" max="100" style="width: 100%; padding: 0.5rem;" onchange="calculateDistillationTotalABV(this)" required></td>
+                            <td><input type="number" class="distillation-scaling" value="3" min="0.1" step="0.1" style="width: 80px; padding: 0.5rem;" onchange="calculateDistillationScaling()"></td>
+                            <td><input type="number" placeholder="0" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="distillation-scaled-pour"></td>
+                            <td><button type="button" onclick="removeDistillationIngredientRow(this)" style="background: none; border: none; color: var(--danger);"><i class="fas fa-trash"></i></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <button type="button" class="btn btn-outline" onclick="addDistillationIngredientRow()" style="margin-bottom: 1.5rem;">
+                    <i class="fas fa-plus"></i> Add Botanical
+                </button>
+
+                <!-- Totals Row -->
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div class="form-group">
+                        <label class="form-label">Total Pour (ml)</label>
+                        <input type="number" id="distillationTotalPour" class="form-input" readonly style="background: var(--light);" value="0">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Total Pour Cost ($)</label>
+                        <input type="number" id="distillationTotalPourCost" class="form-input" readonly style="background: var(--light);" value="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Total Scaled Pour (ml)</label>
+                        <input type="number" id="distillationTotalScaledPour" class="form-input" readonly style="background: var(--light);" value="0">
+                    </div>
+                </div>
+
+                <!-- Scaling & Yield -->
+                <div style="background: rgba(230,126,34,0.05); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--accent);">
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <i class="fas fa-calculator" style="color: var(--accent);"></i>
+                        <h3 style="color: var(--primary); font-size: 1.1rem; font-weight: 600;">Scaling</h3>
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+                        <div class="form-group">
+                            <label class="form-label">Global Scaling Factor</label>
+                            <input type="number" id="distillationGlobalScaling" class="form-input" value="3" min="0.1" step="0.1" onchange="updateDistillationScalingFactor()">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Yield (after 20% loss)</label>
+                            <input type="number" id="distillationYield" class="form-input" readonly style="background: var(--light);" value="0">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Meta Data -->
+                <div style="background: rgba(44,62,80,0.02); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem;">
+                        <i class="fas fa-info-circle"></i> Meta Data
+                    </h3>
+                    
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label class="form-label">Used in these drinks</label>
+                        <input type="text" id="distillationUsedIn" class="form-input" placeholder="e.g., House Martini, Negroni">
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label class="form-label">Instructions</label>
+                        <textarea id="distillationInstructions" class="form-input" placeholder="Detailed distillation instructions..." rows="3"></textarea>
+                    </div>
+                    
+                    <div class="form-group" style="margin-bottom: 1rem;">
+                        <label class="form-label">Allergens</label>
+                        <input type="text" id="distillationAllergens" class="form-input" placeholder="e.g., Nuts, Gluten...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Notes</label>
+                        <textarea id="distillationNotes" class="form-input" placeholder="Additional notes..." rows="2"></textarea>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                    <button type="button" class="btn btn-outline" onclick="closeModal('addDistillationModal')">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Distillation</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Edit Venue Modal -->
     <div id="editVenueModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
         <div class="modal-content" style="background: var(--white); border-radius: 24px; padding: 2rem; max-width: 500px; width: 95%;">
@@ -1597,322 +2054,6 @@
         </div>
     </div>
 
-    <!-- Add Infusion Modal - Excel Template Format -->
-    <div id="addInfusionModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
-        <div class="modal-content" style="background: var(--white); border-radius: 24px; padding: 2rem; max-width: 1200px; width: 95%; max-height: 90vh; overflow-y: auto;">
-            <div class="modal-header">
-                <h2 class="modal-title">
-                    <i class="fas fa-flask"></i> New Infusion - COGS Calculator
-                </h2>
-                <button class="modal-close" onclick="closeModal('addInfusionModal')">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
-            <form id="newInfusionForm" onsubmit="saveNewInfusion(event)">
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
-                    <div class="form-group">
-                        <label class="form-label">Infusion Name</label>
-                        <input type="text" id="infusionName" class="form-input" placeholder="e.g., LA ROCHELLE MARTINI" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Author</label>
-                        <input type="text" id="infusionAuthor" class="form-input" placeholder="e.g., Bar Manager" value="Bar Manager">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Date</label>
-                        <input type="text" id="infusionDate" class="form-input" value="${new Date().toLocaleDateString()}" readonly style="background: var(--light);">
-                    </div>
-                </div>
-
-                <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem;">
-                    <i class="fas fa-flask"></i> Ingredients (COGS Calculation)
-                </h3>
-                
-                <table class="ingredient-table" style="width: 100%; border-collapse: collapse; margin-bottom: 1rem;">
-                    <thead>
-                        <tr style="background: var(--light);">
-                            <th style="padding: 0.75rem; text-align: left;">Ingredient</th>
-                            <th style="padding: 0.75rem; text-align: left;">Volume (ml)</th>
-                            <th style="padding: 0.75rem; text-align: left;">Cost ($)</th>
-                            <th style="padding: 0.75rem; text-align: left;">Pour (ml)</th>
-                            <th style="padding: 0.75rem; text-align: left;">Pour Cost</th>
-                            <th style="padding: 0.75rem; text-align: left;">%ABV</th>
-                            <th style="padding: 0.75rem; text-align: left;">Total ABV</th>
-                            <th style="padding: 0.75rem; text-align: left;">Scaling</th>
-                            <th style="padding: 0.75rem; text-align: left;">Scaled Pour</th>
-                            <th style="padding: 0.75rem; text-align: left;"></th>
-                        </tr>
-                    </thead>
-                    <tbody id="infusionIngredientTableBody">
-                        <tr class="infusion-ingredient-row">
-                            <td><input type="text" placeholder="Rhum Escale à La Rochelle" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionIngredientCost(this)" required></td>
-                            <td><input type="number" placeholder="500" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionIngredientCost(this)" required></td>
-                            <td><input type="number" placeholder="0" step="0.01" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionIngredientCost(this)" required></td>
-                            <td><input type="number" placeholder="50" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionIngredientCost(this)" required></td>
-                            <td><input type="number" placeholder="0.00" step="0.001" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="infusion-pour-cost"></td>
-                            <td><input type="number" placeholder="47" step="0.1" min="0" max="100" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionTotalABV(this)" required></td>
-                            <td><input type="number" placeholder="0.00" step="0.01" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="infusion-total-abv"></td>
-                            <td><input type="number" id="infusionScalingFactor" value="3" min="0.1" step="0.1" style="width: 80px; padding: 0.5rem;" onchange="calculateInfusionScaling()"></td>
-                            <td><input type="number" placeholder="0" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="infusion-scaled-pour"></td>
-                            <td><button type="button" onclick="removeInfusionIngredientRow(this)" style="background: none; border: none; color: var(--danger);"><i class="fas fa-trash"></i></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <button type="button" class="btn btn-outline" onclick="addInfusionIngredientRow()" style="margin-bottom: 1.5rem;">
-                    <i class="fas fa-plus"></i> Add Ingredient
-                </button>
-
-                <!-- Totals Row -->
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
-                    <div class="form-group">
-                        <label class="form-label">Total Pour (ml)</label>
-                        <input type="number" id="infusionTotalPour" class="form-input" readonly style="background: var(--light);" value="0">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Total Pour Cost ($)</label>
-                        <input type="number" id="infusionTotalPourCost" class="form-input" readonly style="background: var(--light);" value="0.00">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Total ABV</label>
-                        <input type="number" id="infusionTotalABV" class="form-input" readonly style="background: var(--light);" value="0.00">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Total Scaled Pour</label>
-                        <input type="number" id="infusionTotalScaledPour" class="form-input" readonly style="background: var(--light);" value="0">
-                    </div>
-                </div>
-
-                <!-- Scaling Section -->
-                <div style="background: rgba(230,126,34,0.05); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--accent);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <i class="fas fa-calculator" style="color: var(--accent);"></i>
-                        <h3 style="color: var(--primary); font-size: 1.1rem; font-weight: 600;">Scaling & Yield</h3>
-                    </div>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1rem;">
-                        <div class="form-group">
-                            <label class="form-label">Scaling Factor</label>
-                            <input type="number" id="infusionGlobalScaling" class="form-input" value="3" min="0.1" step="0.1" onchange="updateInfusionScalingFactor()">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Total Scaled Volume (ml)</label>
-                            <input type="number" id="infusionTotalScaledVolume" class="form-input" readonly style="background: var(--light);" value="0">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Yield (after 20% loss)</label>
-                            <input type="number" id="infusionYield" class="form-input" readonly style="background: var(--light);" value="0">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Meta Data Section -->
-                <div style="background: rgba(44,62,80,0.02); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem;">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem;">
-                        <i class="fas fa-info-circle"></i> Meta Data
-                    </h3>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1rem;">
-                        <div class="form-group">
-                            <label class="form-label">Author</label>
-                            <input type="text" id="infusionMetaAuthor" class="form-input" placeholder="Author name" value="Bar Manager">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Date</label>
-                            <input type="text" id="infusionMetaDate" class="form-input" value="${new Date().toLocaleDateString()}" readonly style="background: var(--light);">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom: 1rem;">
-                        <label class="form-label">Used in these drinks</label>
-                        <input type="text" id="infusionUsedIn" class="form-input" placeholder="e.g., LA ROCHELLE MARTINI, HOUSE MARTINI">
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom: 1rem;">
-                        <label class="form-label">Instructions</label>
-                        <textarea id="infusionInstructions" class="form-input" placeholder="Detailed infusion instructions..." rows="3"></textarea>
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom: 1rem;">
-                        <label class="form-label">Allergens</label>
-                        <input type="text" id="infusionAllergens" class="form-input" placeholder="e.g., Nuts, Dairy, Gluten...">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Notes</label>
-                        <textarea id="infusionNotes" class="form-input" placeholder="Additional notes..." rows="2"></textarea>
-                    </div>
-                </div>
-
-                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
-                    <button type="button" class="btn btn-outline" onclick="closeModal('addInfusionModal')">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Create Infusion</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Add Distillation Modal - Excel Template Format -->
-    <div id="addDistillationModal" class="modal" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 2000; align-items: center; justify-content: center;">
-        <div class="modal-content" style="background: var(--white); border-radius: 24px; padding: 2rem; max-width: 1200px; width: 95%; max-height: 90vh; overflow-y: auto;">
-            <div class="modal-header">
-                <h2 class="modal-title">
-                    <i class="fas fa-wine-bottle"></i> New Distillation - COGS Calculator
-                </h2>
-                <button class="modal-close" onclick="closeModal('addDistillationModal')">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            
-            <form id="newDistillationForm" onsubmit="saveNewDistillation(event)">
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
-                    <div class="form-group">
-                        <label class="form-label">Spirit Name</label>
-                        <input type="text" id="distillationName" class="form-input" placeholder="e.g., HOUSE GIN" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Base Spirit</label>
-                        <input type="text" id="distillationBase" class="form-input" placeholder="e.g., Neutral Spirit" required>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Author</label>
-                        <input type="text" id="distillationAuthor" class="form-input" placeholder="e.g., Head Distiller" value="Head Distiller">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Date</label>
-                        <input type="text" id="distillationDate" class="form-input" value="${new Date().toLocaleDateString()}" readonly style="background: var(--light);">
-                    </div>
-                </div>
-
-                <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem;">
-                    <i class="fas fa-flask"></i> Botanicals (COGS Calculation)
-                </h3>
-                
-                <table class="ingredient-table" style="width: 100%; border-collapse: collapse; margin-bottom: 1rem;">
-                    <thead>
-                        <tr style="background: var(--light);">
-                            <th style="padding: 0.75rem; text-align: left;">Botanical</th>
-                            <th style="padding: 0.75rem; text-align: left;">Volume (ml)</th>
-                            <th style="padding: 0.75rem; text-align: left;">Cost ($)</th>
-                            <th style="padding: 0.75rem; text-align: left;">Pour (ml)</th>
-                            <th style="padding: 0.75rem; text-align: left;">Pour Cost</th>
-                            <th style="padding: 0.75rem; text-align: left;">%ABV</th>
-                            <th style="padding: 0.75rem; text-align: left;">Total ABV</th>
-                            <th style="padding: 0.75rem; text-align: left;">Scaling</th>
-                            <th style="padding: 0.75rem; text-align: left;">Scaled Pour</th>
-                            <th style="padding: 0.75rem; text-align: left;"></th>
-                        </tr>
-                    </thead>
-                    <tbody id="distillationIngredientTableBody">
-                        <tr class="distillation-ingredient-row">
-                            <td><input type="text" placeholder="Juniper" style="width: 100%; padding: 0.5rem;" onchange="calculateDistillationIngredientCost(this)" required></td>
-                            <td><input type="number" placeholder="1000" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateDistillationIngredientCost(this)" required></td>
-                            <td><input type="number" placeholder="0" step="0.01" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateDistillationIngredientCost(this)" required></td>
-                            <td><input type="number" placeholder="30" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateDistillationIngredientCost(this)" required></td>
-                            <td><input type="number" placeholder="0.00" step="0.001" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="distillation-pour-cost"></td>
-                            <td><input type="number" placeholder="40" step="0.1" min="0" max="100" style="width: 100%; padding: 0.5rem;" onchange="calculateDistillationTotalABV(this)" required></td>
-                            <td><input type="number" placeholder="0.00" step="0.01" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="distillation-total-abv"></td>
-                            <td><input type="number" id="distillationScalingFactor" value="3" min="0.1" step="0.1" style="width: 80px; padding: 0.5rem;" onchange="calculateDistillationScaling()"></td>
-                            <td><input type="number" placeholder="0" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="distillation-scaled-pour"></td>
-                            <td><button type="button" onclick="removeDistillationIngredientRow(this)" style="background: none; border: none; color: var(--danger);"><i class="fas fa-trash"></i></button></td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                <button type="button" class="btn btn-outline" onclick="addDistillationIngredientRow()" style="margin-bottom: 1.5rem;">
-                    <i class="fas fa-plus"></i> Add Botanical
-                </button>
-
-                <!-- Totals Row -->
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
-                    <div class="form-group">
-                        <label class="form-label">Total Pour (ml)</label>
-                        <input type="number" id="distillationTotalPour" class="form-input" readonly style="background: var(--light);" value="0">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Total Pour Cost ($)</label>
-                        <input type="number" id="distillationTotalPourCost" class="form-input" readonly style="background: var(--light);" value="0.00">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Total ABV</label>
-                        <input type="number" id="distillationTotalABV" class="form-input" readonly style="background: var(--light);" value="0.00">
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label">Total Scaled Pour</label>
-                        <input type="number" id="distillationTotalScaledPour" class="form-input" readonly style="background: var(--light);" value="0">
-                    </div>
-                </div>
-
-                <!-- Scaling Section -->
-                <div style="background: rgba(230,126,34,0.05); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--accent);">
-                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
-                        <i class="fas fa-calculator" style="color: var(--accent);"></i>
-                        <h3 style="color: var(--primary); font-size: 1.1rem; font-weight: 600;">Scaling & Yield</h3>
-                    </div>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1rem;">
-                        <div class="form-group">
-                            <label class="form-label">Scaling Factor</label>
-                            <input type="number" id="distillationGlobalScaling" class="form-input" value="3" min="0.1" step="0.1" onchange="updateDistillationScalingFactor()">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Total Scaled Volume (ml)</label>
-                            <input type="number" id="distillationTotalScaledVolume" class="form-input" readonly style="background: var(--light);" value="0">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Yield (after 20% loss)</label>
-                            <input type="number" id="distillationYield" class="form-input" readonly style="background: var(--light);" value="0">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Meta Data Section -->
-                <div style="background: rgba(44,62,80,0.02); border-radius: 16px; padding: 1.5rem; margin-bottom: 1.5rem;">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.1rem;">
-                        <i class="fas fa-info-circle"></i> Meta Data
-                    </h3>
-                    
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1rem;">
-                        <div class="form-group">
-                            <label class="form-label">Author</label>
-                            <input type="text" id="distillationMetaAuthor" class="form-input" placeholder="Author name" value="Head Distiller">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Date</label>
-                            <input type="text" id="distillationMetaDate" class="form-input" value="${new Date().toLocaleDateString()}" readonly style="background: var(--light);">
-                        </div>
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom: 1rem;">
-                        <label class="form-label">Used in these drinks</label>
-                        <input type="text" id="distillationUsedIn" class="form-input" placeholder="e.g., HOUSE MARTINI, NEGRONI">
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom: 1rem;">
-                        <label class="form-label">Instructions</label>
-                        <textarea id="distillationInstructions" class="form-input" placeholder="Detailed distillation instructions..." rows="3"></textarea>
-                    </div>
-                    
-                    <div class="form-group" style="margin-bottom: 1rem;">
-                        <label class="form-label">Allergens</label>
-                        <input type="text" id="distillationAllergens" class="form-input" placeholder="e.g., Nuts, Gluten...">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Notes</label>
-                        <textarea id="distillationNotes" class="form-input" placeholder="Additional notes..." rows="2"></textarea>
-                    </div>
-                </div>
-
-                <div style="display: flex; gap: 1rem; justify-content: flex-end;">
-                    <button type="button" class="btn btn-outline" onclick="closeModal('addDistillationModal')">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Create Distillation</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <!-- Cocktail Spec PDF Template (Hidden) -->
     <div id="cocktailSpecTemplate" style="display: none;">
         <div class="pdf-spec-container" style="padding: 2rem; max-width: 800px; margin: 0 auto; background: white; font-family: 'Inter', sans-serif;">
@@ -1921,7 +2062,7 @@
                     <div style="width: 50px; height: 50px; background: #000000; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
                         <i class="fas fa-sheep" style="font-size: 1.5rem;"></i>
                     </div>
-                    <h1 style="color: #2C3E50; font-size: 2rem;">BLACK SHEEP</h1>
+                    <h1 style="color: #2C3E50; font-size: 2rem;">🐑 BLACK SHEEP</h1>
                 </div>
                 <p style="color: #E67E22; font-weight: 600;">COCKTAIL SPEC</p>
             </div>
@@ -1949,6 +2090,9 @@
     <div id="toastContainer"></div>
 
     <script>
+        // Constants
+        const DASH_TO_ML = 0.92;
+
         // State Management
         const AppState = {
             venues: [
@@ -2047,6 +2191,74 @@
                     dateAdded: "2024-01-10",
                     author: "Classic Recipe",
                     dilutionPreset: "shake"
+                },
+                {
+                    id: 1003,
+                    name: "Aviation",
+                    category: "classic",
+                    family: "Sour",
+                    image: "https://images.unsplash.com/photo-1551024701-1b5e0d7d5c9e?w=400",
+                    recipe: [
+                        { ingredient: "Gin", amount: 60, unit: "ml", bottleSize: 700, bottleCost: 32, pourCost: 2.74, abv: 47, spiritId: null },
+                        { ingredient: "Lemon Juice", amount: 15, unit: "ml", bottleSize: 1000, bottleCost: 12, pourCost: 0.18, abv: 0, spiritId: null },
+                        { ingredient: "Maraschino Liqueur", amount: 15, unit: "ml", bottleSize: 700, bottleCost: 35, pourCost: 0.75, abv: 32, spiritId: null },
+                        { ingredient: "Crème de Violette", amount: 5, unit: "ml", bottleSize: 500, bottleCost: 30, pourCost: 0.30, abv: 20, spiritId: null }
+                    ],
+                    pourCost: 3.97,
+                    sellingPrice: 140,
+                    cogs: 2.84,
+                    finalAbv: 26.5,
+                    method: "Shake with ice, strain into coupe. Garnish with cherry.",
+                    garnish: "Cherry",
+                    glassware: "Coupe",
+                    dateAdded: "2024-01-15",
+                    author: "Classic Recipe",
+                    dilutionPreset: "shake"
+                },
+                {
+                    id: 1004,
+                    name: "Boulevardier",
+                    category: "classic",
+                    family: "Martini",
+                    image: "https://images.unsplash.com/photo-1575023782549-62ca0d244b39?w=400",
+                    recipe: [
+                        { ingredient: "Bourbon", amount: 45, unit: "ml", bottleSize: 750, bottleCost: 38, pourCost: 2.28, abv: 40, spiritId: null },
+                        { ingredient: "Campari", amount: 30, unit: "ml", bottleSize: 1000, bottleCost: 38, pourCost: 1.14, abv: 24, spiritId: null },
+                        { ingredient: "Sweet Vermouth", amount: 30, unit: "ml", bottleSize: 750, bottleCost: 28, pourCost: 1.12, abv: 16, spiritId: null }
+                    ],
+                    pourCost: 4.54,
+                    sellingPrice: 135,
+                    cogs: 3.36,
+                    finalAbv: 28.5,
+                    method: "Stir with ice, strain into rocks glass over ice. Garnish with orange peel.",
+                    garnish: "Orange peel",
+                    glassware: "Rocks glass",
+                    dateAdded: "2024-01-20",
+                    author: "Classic Recipe",
+                    dilutionPreset: "stir"
+                },
+                {
+                    id: 1005,
+                    name: "Cosmopolitan",
+                    category: "classic",
+                    family: "Sour",
+                    image: "https://images.unsplash.com/photo-1556855810-ac404aa91e85?w=400",
+                    recipe: [
+                        { ingredient: "Vodka", amount: 45, unit: "ml", bottleSize: 700, bottleCost: 30, pourCost: 1.93, abv: 40, spiritId: null },
+                        { ingredient: "Cranberry Juice", amount: 30, unit: "ml", bottleSize: 1000, bottleCost: 8, pourCost: 0.24, abv: 0, spiritId: null },
+                        { ingredient: "Lime Juice", amount: 15, unit: "ml", bottleSize: 1000, bottleCost: 12, pourCost: 0.18, abv: 0, spiritId: null },
+                        { ingredient: "Cointreau", amount: 15, unit: "ml", bottleSize: 700, bottleCost: 38, pourCost: 0.81, abv: 40, spiritId: null }
+                    ],
+                    pourCost: 3.16,
+                    sellingPrice: 125,
+                    cogs: 2.53,
+                    finalAbv: 22.5,
+                    method: "Shake with ice, strain into coupe. Garnish with lime wheel.",
+                    garnish: "Lime wheel",
+                    glassware: "Coupe",
+                    dateAdded: "2024-01-25",
+                    author: "Classic Recipe",
+                    dilutionPreset: "shake"
                 }
             ],
             spiritLibrary: [
@@ -2074,7 +2286,7 @@
             selectedCocktail: null,
             scaleMethod: 'serving',
             scaleQuantity: 1,
-            dilutionType: 'shake',
+            dilutionType: 'none',
             customDilution: 0.20,
             omittedIngredients: [],
             includeWater: true,
@@ -2083,11 +2295,13 @@
             pdfPreviewData: null,
             pdfPreviewType: null,
             nextCocktailId: 303,
-            nextClassicCocktailId: 1003,
+            nextClassicCocktailId: 1006,
             nextVenueId: 4,
             nextInfusionId: 1,
             nextDistillationId: 1,
-            usedFamilies: ['Sour', 'Collins', 'Gimlet', 'Rickey', 'Sidecar', 'Smash', 'Manhattan', 'Martini', 'Old Fashioned', 'Tiki', 'NA']
+            usedFamilies: ['Sour', 'Collins', 'Gimlet', 'Rickey', 'Sidecar', 'Smash', 'Manhattan', 'Martini', 'Old Fashioned', 'Tiki', 'NA'],
+            searchResults: [],
+            searchVisible: false
         };
 
         // DOM Elements
@@ -2168,7 +2382,33 @@
             }
         }
 
-        // Dashboard Page
+        // Convert unit (ml to dash, etc.)
+        function convertUnit(select) {
+            const row = select.closest('tr');
+            const pourInput = row.cells[3].querySelector('input');
+            const unit = select.value;
+            
+            // Store the original value in ml for calculation
+            if (!row.dataset.originalMl) {
+                row.dataset.originalMl = pourInput.value;
+            }
+            
+            if (unit === 'dash') {
+                // Convert ml to dashes (1 dash = 0.92ml)
+                const mlValue = parseFloat(pourInput.value) || 0;
+                const dashValue = mlValue / DASH_TO_ML;
+                pourInput.value = dashValue.toFixed(1);
+            } else {
+                // Convert dashes to ml
+                const dashValue = parseFloat(pourInput.value) || 0;
+                const mlValue = dashValue * DASH_TO_ML;
+                pourInput.value = mlValue.toFixed(1);
+            }
+            
+            calculateIngredientCost(pourInput);
+        }
+
+        // Dashboard Page with Search
         function renderDashboard() {
             const totalCocktails = AppState.venues.reduce((acc, venue) => acc + venue.cocktails.length, 0) + AppState.classicCocktails.length;
             const totalSpirits = AppState.spiritLibrary.length;
@@ -2182,6 +2422,11 @@
                         <i class="fas fa-home"></i>
                         Dashboard
                     </h1>
+                    <div class="search-container" style="position: relative;">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Quick search cocktails, spirits, venues..." id="globalSearch" onkeyup="handleGlobalSearch(this.value)">
+                        <div id="globalSearchResults" class="search-results"></div>
+                    </div>
                 </div>
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
@@ -2247,6 +2492,121 @@
                     </div>
                 </div>
             `;
+
+            // Add click outside listener to close search results
+            document.addEventListener('click', function(e) {
+                const searchContainer = document.querySelector('.search-container');
+                if (searchContainer && !searchContainer.contains(e.target)) {
+                    const results = document.getElementById('globalSearchResults');
+                    if (results) results.style.display = 'none';
+                }
+            });
+        }
+
+        // Global Search Handler
+        function handleGlobalSearch(query) {
+            const searchTerm = query.toLowerCase();
+            const resultsContainer = document.getElementById('globalSearchResults');
+            
+            if (searchTerm.length < 2) {
+                resultsContainer.style.display = 'none';
+                return;
+            }
+
+            const results = [];
+
+            // Search signature cocktails
+            AppState.venues.forEach(venue => {
+                venue.cocktails.forEach(cocktail => {
+                    if (cocktail.name.toLowerCase().includes(searchTerm) ||
+                        cocktail.family?.toLowerCase().includes(searchTerm)) {
+                        results.push({
+                            type: 'Cocktail',
+                            name: cocktail.name,
+                            venue: venue.name,
+                            action: () => viewCocktailDetail(venue.id, cocktail.id)
+                        });
+                    }
+                });
+            });
+
+            // Search classic cocktails
+            AppState.classicCocktails.forEach(cocktail => {
+                if (cocktail.name.toLowerCase().includes(searchTerm) ||
+                    cocktail.family?.toLowerCase().includes(searchTerm)) {
+                    results.push({
+                        type: 'Classic Cocktail',
+                        name: cocktail.name,
+                        venue: 'Classic',
+                        action: () => viewClassicCocktailDetail(cocktail.id)
+                    });
+                }
+            });
+
+            // Search spirits
+            AppState.spiritLibrary.forEach(spirit => {
+                if (spirit.name.toLowerCase().includes(searchTerm) ||
+                    spirit.brand.toLowerCase().includes(searchTerm) ||
+                    spirit.type.toLowerCase().includes(searchTerm)) {
+                    results.push({
+                        type: 'Spirit',
+                        name: spirit.name,
+                        brand: spirit.brand,
+                        action: () => {
+                            AppState.currentPage = 'spirit-library';
+                            renderSpiritLibrary();
+                        }
+                    });
+                }
+            });
+
+            // Search venues
+            AppState.venues.forEach(venue => {
+                if (venue.name.toLowerCase().includes(searchTerm)) {
+                    results.push({
+                        type: 'Venue',
+                        name: venue.name,
+                        location: venue.location,
+                        action: () => {
+                            AppState.currentView = 'cocktails';
+                            AppState.selectedVenue = venue.id;
+                            renderCocktailList(venue.id);
+                        }
+                    });
+                }
+            });
+
+            AppState.searchResults = results.slice(0, 10);
+
+            if (results.length > 0) {
+                resultsContainer.innerHTML = AppState.searchResults.map(result => `
+                    <div class="search-result-item" onclick="executeSearchResult(this, ${JSON.stringify(result.action).replace(/"/g, '&quot;')})">
+                        <div class="search-result-category">${result.type}</div>
+                        <div style="font-weight: 600;">${result.name}</div>
+                        <div style="font-size: 0.75rem; color: var(--gray);">${result.venue || result.brand || result.location || ''}</div>
+                    </div>
+                `).join('');
+                resultsContainer.style.display = 'block';
+            } else {
+                resultsContainer.innerHTML = '<div class="search-result-item" style="color: var(--gray);">No results found</div>';
+                resultsContainer.style.display = 'block';
+            }
+        }
+
+        // Execute search result
+        function executeSearchResult(element, actionString) {
+            // Parse and execute the action
+            const action = eval('(' + actionString + ')');
+            if (typeof action === 'function') {
+                action();
+            }
+            
+            // Hide results
+            document.getElementById('globalSearchResults').style.display = 'none';
+            
+            // Clear search input
+            const searchInput = document.getElementById('globalSearch');
+            if (searchInput) searchInput.value = '';
         }
 
         // Spirit Library - Import from Excel with ABV Auto-Update
@@ -2329,7 +2689,6 @@
             showToast(`🔍 Searching for ${spirit.name} ABV...`);
             
             // Simulate API call to get ABV data
-            // In a real application, this would call a cocktail database API
             setTimeout(() => {
                 // Mock ABV updates based on spirit type
                 const abvUpdates = {
@@ -2513,7 +2872,7 @@
             inputs[0].value = name;
             inputs[1].value = bottleSize;
             inputs[2].value = bottleCost;
-            inputs[5].value = abv;
+            inputs[6].value = abv;
             
             row.dataset.spiritId = spiritId;
             
@@ -2595,51 +2954,95 @@
             }, 100);
         }
 
-        // Classic Cocktails Library
+        // Classic Cocktails Library with Alphabet Navigation
         function renderClassicCocktails() {
+            // Sort cocktails alphabetically
             const sortedClassics = [...AppState.classicCocktails].sort((a, b) => a.name.localeCompare(b.name));
             
+            // Group cocktails by first letter
+            const groupedCocktails = {};
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+            
+            alphabet.forEach(letter => {
+                groupedCocktails[letter] = sortedClassics.filter(c => 
+                    c.name.charAt(0).toUpperCase() === letter
+                );
+            });
+
             mainContent.innerHTML = `
                 <div class="top-header">
-                    <h1 class="page-title">
-                        <i class="fas fa-book"></i>
-                        Classic Cocktails
-                    </h1>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <h1 class="page-title" style="margin-left: 0;">
+                            <i class="fas fa-book"></i>
+                            Classic Cocktails
+                        </h1>
+                    </div>
                     <button class="btn btn-primary" onclick="openAddClassicCocktailModal()">
                         <i class="fas fa-plus"></i> New Classic
                     </button>
                 </div>
 
-                <div class="cocktail-list">
-                    ${sortedClassics.map(cocktail => `
-                        <div class="cocktail-item" onclick="viewClassicCocktailDetail(${cocktail.id})">
-                            <div class="cocktail-thumbnail">
-                                <img src="${cocktail.image || 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=100'}" alt="${cocktail.name}">
-                            </div>
-                            <div class="cocktail-info">
-                                <div class="cocktail-name">
-                                    ${cocktail.name}
-                                    <span style="margin-left: 0.5rem; background: rgba(230,126,34,0.1); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.7rem;">
-                                        ${cocktail.family}
-                                    </span>
-                                </div>
-                                <div class="cocktail-meta">
-                                    <span><i class="fas fa-wine-glass"></i> ${cocktail.glassware}</span>
-                                    <span><i class="fas fa-leaf"></i> ${cocktail.garnish}</span>
-                                    <span><i class="fas fa-percent"></i> ${cocktail.finalAbv.toFixed(1)}% ABV</span>
-                                    <span class="cogs-badge ${cocktail.cogs < 25 ? 'cogs-good' : cocktail.cogs < 35 ? 'cogs-warning' : 'cogs-high'}">
-                                        COGS: ${cocktail.cogs}%
-                                    </span>
-                                    <button class="share-btn" onclick="event.stopPropagation(); shareCocktailSpec(${cocktail.id}, 'classic')">
-                                        <i class="fas fa-share-alt"></i> Share
-                                    </button>
-                                </div>
-                                <div style="margin-top: 0.5rem; color: var(--gray); font-size: 0.875rem;">
-                                    ${cocktail.recipe.length} ingredients • $${cocktail.sellingPrice}
-                                </div>
-                            </div>
+                <div class="classic-container">
+                    <div class="classic-content">
+                        <div class="cocktail-list">
+                            ${alphabet.map(letter => {
+                                const cocktails = groupedCocktails[letter];
+                                if (cocktails && cocktails.length > 0) {
+                                    return `
+                                        <div id="letter-${letter}" style="margin-bottom: 1rem;">
+                                            <div style="background: var(--accent); color: white; padding: 0.5rem 1rem; border-radius: 30px; display: inline-block; margin-bottom: 0.5rem; font-weight: 600;">
+                                                ${letter}
+                                            </div>
+                                            ${cocktails.map(cocktail => `
+                                                <div class="cocktail-item" onclick="viewClassicCocktailDetail(${cocktail.id})">
+                                                    <div class="cocktail-thumbnail">
+                                                        <img src="${cocktail.image || 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=100'}" alt="${cocktail.name}">
+                                                    </div>
+                                                    <div class="cocktail-info">
+                                                        <div class="cocktail-name">
+                                                            ${cocktail.name}
+                                                            <span style="margin-left: 0.5rem; background: rgba(230,126,34,0.1); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.7rem;">
+                                                                ${cocktail.family}
+                                                            </span>
+                                                        </div>
+                                                        <div class="cocktail-meta">
+                                                            <span><i class="fas fa-wine-glass"></i> ${cocktail.glassware}</span>
+                                                            <span><i class="fas fa-leaf"></i> ${cocktail.garnish}</span>
+                                                            <span><i class="fas fa-percent"></i> ${cocktail.finalAbv.toFixed(1)}% ABV</span>
+                                                            <span class="cogs-badge ${cocktail.cogs < 25 ? 'cogs-good' : cocktail.cogs < 35 ? 'cogs-warning' : 'cogs-high'}">
+                                                                COGS: ${cocktail.cogs}%
+                                                            </span>
+                                                            <button class="edit-btn" onclick="event.stopPropagation(); editClassicCocktail(${cocktail.id})">
+                                                                <i class="fas fa-edit"></i> Edit
+                                                            </button>
+                                                            <button class="share-btn" onclick="event.stopPropagation(); shareCocktailSpec(${cocktail.id}, 'classic')">
+                                                                <i class="fas fa-share-alt"></i> Share
+                                                            </button>
+                                                        </div>
+                                                        <div style="margin-top: 0.5rem; color: var(--gray); font-size: 0.875rem;">
+                                                            ${cocktail.recipe.length} ingredients • $${cocktail.sellingPrice}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            `).join('')}
+                                        </div>
+                                    `;
+                                }
+                                return '';
+                            }).join('')}
                         </div>
-                    `).join('')}
+                    </div>
+                    
+                    <!-- Alphabet Navigation -->
+                    <div class="alphabet-nav">
+                        ${alphabet.map(letter => `
+                            <div class="alphabet-letter ${groupedCocktails[letter] && groupedCocktails[letter].length > 0 ? '' : ''}" 
+                                 onclick="document.getElementById('letter-${letter}')?.scrollIntoView({behavior: 'smooth'})"
+                                 style="${!groupedCocktails[letter] || groupedCocktails[letter].length === 0 ? 'opacity: 0.3; cursor: default;' : ''}">
+                                ${letter}
+                            </div>
+                        `).join('')}
+                    </div>
                 </div>
             `;
         }
@@ -2651,7 +3054,7 @@
             AppState.selectedCocktail = cocktailId;
             AppState.scaleMethod = 'serving';
             AppState.scaleQuantity = 1;
-            AppState.dilutionType = 'shake';
+            AppState.dilutionType = 'none';
             AppState.customDilution = 0.20;
             AppState.showScaledResults = false;
             AppState.omittedIngredients = [];
@@ -2665,7 +3068,7 @@
             
             if (!cocktail) return;
 
-            let dilutionFactor = AppState.dilutionPresets[AppState.dilutionType] || 0.25;
+            let dilutionFactor = AppState.dilutionPresets[AppState.dilutionType] || 0;
             if (AppState.dilutionType === 'custom') {
                 dilutionFactor = AppState.customDilution;
             }
@@ -2674,7 +3077,7 @@
 
             const totalPreDilutionVolume = activeRecipe.reduce((acc, item) => {
                 if (item.unit === 'ml') return acc + item.amount;
-                if (item.unit === 'dash') return acc + 0.92;
+                if (item.unit === 'dash') return acc + (item.amount * DASH_TO_ML);
                 if (item.unit === 'oz') return acc + (item.amount * 29.5735);
                 return acc;
             }, 0);
@@ -2683,13 +3086,14 @@
                 ? AppState.scaleQuantity / 1
                 : AppState.scaleQuantity / totalPreDilutionVolume;
             
-            const waterAmount = AppState.showScaledResults ? totalPreDilutionVolume * dilutionFactor * scaleFactor : 0;
+            const waterAmount = AppState.showScaledResults && dilutionFactor > 0 ? totalPreDilutionVolume * dilutionFactor * scaleFactor : 0;
             
             let scaledRecipe = [];
             let totalVolume = 0;
             let batchCost = 0;
             let batchRevenue = 0;
             let finalAbv = 0;
+            let servingsFromVolume = 0;
             
             if (AppState.showScaledResults) {
                 scaledRecipe = activeRecipe.map(item => ({
@@ -2712,6 +3116,7 @@
                 totalVolume = scaledRecipe.reduce((acc, item) => acc + parseFloat(item.scaledAmount), 0);
                 batchCost = activeRecipe.reduce((acc, item) => acc + (item.pourCost * scaleFactor), 0);
                 batchRevenue = (cocktail.sellingPrice * (AppState.scaleMethod === 'serving' ? AppState.scaleQuantity : totalVolume / 150));
+                servingsFromVolume = Math.round(totalVolume / 150);
                 
                 const totalAlcohol = activeRecipe.reduce((acc, item) => acc + (item.amount * (item.abv / 100)), 0);
                 finalAbv = totalPreDilutionVolume > 0 
@@ -2927,16 +3332,24 @@
                                             Scaled Recipe (${scaleFactor.toFixed(2)}x)
                                         </h4>
                                         
-                                        <div class="water-note">
-                                            <i class="fas fa-tint"></i> Dilution: ${(dilutionFactor * 100).toFixed(0)}% • Water added: ${waterAmount.toFixed(0)}ml
-                                        </div>
+                                        ${dilutionFactor > 0 ? `
+                                            <div class="water-note">
+                                                <i class="fas fa-tint"></i> Dilution: ${(dilutionFactor * 100).toFixed(0)}% • Water added: ${waterAmount.toFixed(0)}ml
+                                            </div>
+                                        ` : ''}
+                                        
+                                        ${AppState.scaleMethod === 'volume' ? `
+                                            <div class="serving-note">
+                                                <i class="fas fa-users"></i> This batch yields approximately ${servingsFromVolume} servings (based on 150ml per serving)
+                                            </div>
+                                        ` : ''}
                                         
                                         <table class="recipe-table">
                                             <thead>
                                                 <tr>
                                                     <th>Ingredient</th>
                                                     <th>Single</th>
-                                                    <th>Batch</th>
+                                                    <th>Batch (ml)</th>
                                                     <th>Unit</th>
                                                     <th>Batch Cost</th>
                                                 </tr>
@@ -2947,7 +3360,7 @@
                                                         <td>${item.ingredient} ${item.isWater ? '💧' : ''}</td>
                                                         <td>${item.amount || '-'}</td>
                                                         <td style="font-weight: 700; color: var(--accent);">${item.scaledAmount}</td>
-                                                        <td>${item.unit}</td>
+                                                        <td>ml</td>
                                                         <td>$${(item.pourCost * scaleFactor).toFixed(2)}</td>
                                                     </tr>
                                                 `).join('')}
@@ -2957,7 +3370,7 @@
                                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
                                             <div style="background: var(--white); padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
                                                 <div style="font-size: 0.75rem; color: var(--gray); margin-bottom: 0.5rem;">Total Volume</div>
-                                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent);">${(totalVolume / 1000).toFixed(2)}L</div>
+                                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent);">${totalVolume.toFixed(0)}ml</div>
                                                 <div style="font-size: 0.75rem; color: var(--gray); margin-top: 0.25rem;">Batch size</div>
                                             </div>
                                             <div style="background: var(--white); padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
@@ -3054,7 +3467,7 @@
             if (checked) {
                 AppState.dilutionType = 'custom';
             } else {
-                AppState.dilutionType = 'shake';
+                AppState.dilutionType = 'none';
             }
             if (venueId === 'classic') {
                 renderClassicCocktailDetail(cocktailId);
@@ -3113,7 +3526,7 @@
             document.getElementById('cocktailMethod').value = cocktail.method || '';
             document.getElementById('cocktailNotes').value = cocktail.notes || '';
             
-            const dilutionPreset = cocktail.dilutionPreset || 'shake';
+            const dilutionPreset = cocktail.dilutionPreset || 'none';
             document.querySelectorAll('input[name="dilutionPreset"]').forEach(radio => {
                 radio.checked = radio.value === dilutionPreset;
             });
@@ -3132,6 +3545,12 @@
                     <td><input type="number" value="${item.bottleSize || 750}" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientCost(this)" required></td>
                     <td><input type="number" value="${item.bottleCost || 0}" step="0.01" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientCost(this)" required></td>
                     <td><input type="number" value="${item.amount}" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientCost(this)" required></td>
+                    <td>
+                        <select style="width: 100%; padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;" onchange="convertUnit(this)">
+                            <option value="ml" ${item.unit === 'ml' ? 'selected' : ''}>ml</option>
+                            <option value="dash" ${item.unit === 'dash' ? 'selected' : ''}>dash</option>
+                        </select>
+                    </td>
                     <td><input type="number" value="${item.pourCost || 0}" step="0.001" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="pour-cost"></td>
                     <td><input type="number" value="${item.abv || 40}" step="0.1" min="0" max="100" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientABV(this)" required></td>
                     <td><button type="button" onclick="removeIngredientRow(this)" style="background: none; border: none; color: var(--danger);"><i class="fas fa-trash"></i></button></td>
@@ -3144,9 +3563,9 @@
                 
                 const bottleSize = item.bottleSize || 750;
                 const bottleCost = item.bottleCost || 0;
-                const pour = item.amount;
+                const pour = item.unit === 'dash' ? item.amount * DASH_TO_ML : item.amount;
                 const pourCost = bottleSize > 0 ? (pour / bottleSize) * bottleCost : 0;
-                const pourCostInput = newRow.cells[4].querySelector('input');
+                const pourCostInput = newRow.cells[5].querySelector('input');
                 pourCostInput.value = pourCost.toFixed(3);
             });
             
@@ -3169,7 +3588,7 @@
             
             if (!cocktail) return;
             
-            let dilutionPreset = 'shake';
+            let dilutionPreset = 'none';
             let customDilution = null;
             
             const selectedDilution = document.querySelector('input[name="dilutionPreset"]:checked');
@@ -3191,9 +3610,18 @@
             
             rows.forEach(row => {
                 const inputs = row.querySelectorAll('input');
+                const unitSelect = row.querySelector('select');
                 if (inputs[0].value && inputs[1].value && inputs[3].value) {
                     const spiritId = row.dataset.spiritId || null;
-                    const pourCost = (parseFloat(inputs[3].value) / parseFloat(inputs[1].value)) * parseFloat(inputs[2].value);
+                    const unit = unitSelect ? unitSelect.value : 'ml';
+                    let pourAmount = parseFloat(inputs[3].value);
+                    
+                    // Convert to ml for calculation
+                    if (unit === 'dash') {
+                        pourAmount = pourAmount * DASH_TO_ML;
+                    }
+                    
+                    const pourCost = (pourAmount / parseFloat(inputs[1].value)) * parseFloat(inputs[2].value);
                     totalPourCost += pourCost;
                     
                     recipe.push({
@@ -3201,9 +3629,9 @@
                         bottleSize: parseFloat(inputs[1].value),
                         bottleCost: parseFloat(inputs[2].value),
                         amount: parseFloat(inputs[3].value),
-                        unit: 'ml',
+                        unit: unit,
                         pourCost: pourCost,
-                        abv: parseFloat(inputs[5].value) || 0,
+                        abv: parseFloat(inputs[6].value) || 0,
                         spiritId: spiritId
                     });
                 }
@@ -3212,10 +3640,24 @@
             const sellingPrice = parseFloat(document.getElementById('cocktailSellingPrice').value);
             const cogs = (totalPourCost / sellingPrice * 100);
             
-            const totalAlcohol = recipe.reduce((acc, item) => acc + (item.amount * (item.abv / 100)), 0);
-            const totalVolume = recipe.reduce((acc, item) => acc + item.amount, 0);
-            const dilutionFactor = customDilution || AppState.dilutionPresets[dilutionPreset] || 0.25;
-            const finalAbv = totalVolume > 0 ? (totalAlcohol / totalVolume) / (1 + dilutionFactor) * 100 : 25;
+            const totalAlcohol = recipe.reduce((acc, item) => {
+                let amount = item.amount;
+                if (item.unit === 'dash') {
+                    amount = amount * DASH_TO_ML;
+                }
+                return acc + (amount * (item.abv / 100));
+            }, 0);
+            
+            const totalVolume = recipe.reduce((acc, item) => {
+                let amount = item.amount;
+                if (item.unit === 'dash') {
+                    amount = amount * DASH_TO_ML;
+                }
+                return acc + amount;
+            }, 0);
+            
+            const dilutionFactor = customDilution || AppState.dilutionPresets[dilutionPreset] || 0;
+            const finalAbv = totalVolume > 0 ? (totalAlcohol / totalVolume) / (1 + dilutionFactor) * 100 : 0;
             
             cocktail.name = document.getElementById('cocktailName').value;
             cocktail.family = document.getElementById('cocktailFamily').value;
@@ -3273,7 +3715,7 @@
             pdf.setTextColor(230, 126, 34);
             pdf.setFontSize(24);
             pdf.setFont('helvetica', 'bold');
-            pdf.text('BLACK SHEEP', 45, yOffset + 5);
+            pdf.text('🐑 BLACK SHEEP', 45, yOffset + 5);
             pdf.setTextColor(44, 62, 80);
             pdf.setFontSize(16);
             pdf.text('CLASSIC COCKTAIL SPEC', 45, yOffset + 15);
@@ -3378,503 +3820,6 @@
             openAddCocktailModal();
             setCocktailCategory('classic');
             document.getElementById('venueSelectionField').style.display = 'none';
-        }
-
-        // Cocktail Overview Menu with Editable Selling Price and PDF Preview
-        function renderCocktailOverview(venueId) {
-            const venue = AppState.venues.find(v => v.id === venueId);
-            const sortedCocktails = [...venue.cocktails].sort((a, b) => a.name.localeCompare(b.name));
-            
-            mainContent.innerHTML = `
-                <div class="top-header">
-                    <div style="display: flex; align-items: center; gap: 1rem;">
-                        <button class="back-button" onclick="goBackToVenues()">
-                            <i class="fas fa-arrow-left"></i> Back to Venues
-                        </button>
-                        <h1 class="page-title" style="margin-left: 1rem;">
-                            <i class="fas fa-cocktail"></i>
-                            ${venue.name} - Cocktail Menu
-                        </h1>
-                    </div>
-                    <div class="overview-actions">
-                        <button class="btn btn-outline" onclick="previewMenuPDF(${venueId})">
-                            <i class="fas fa-eye"></i> Preview Menu
-                        </button>
-                        <button class="btn btn-outline" onclick="previewSpecsPDF(${venueId})">
-                            <i class="fas fa-file-pdf"></i> Preview Specs
-                        </button>
-                        <button class="btn btn-outline" onclick="selectAllCocktailsForPrint(${venueId})">
-                            <i class="fas fa-check-double"></i> Select All
-                        </button>
-                        <button class="btn btn-pdf" onclick="printSelectedCocktailSpecs(${venueId})">
-                            <i class="fas fa-file-pdf"></i> Print Selected Specs
-                        </button>
-                    </div>
-                </div>
-
-                <div class="overview-container">
-                    <div class="overview-header">
-                        <div class="overview-title">
-                            <i class="fas fa-list-ul"></i> Cocktail Menu Overview
-                        </div>
-                        <div style="color: var(--gray);">
-                            <i class="fas fa-info-circle"></i> Click on price to edit - COGS auto-updates
-                        </div>
-                    </div>
-
-                    <table class="overview-table">
-                        <thead>
-                            <tr>
-                                <th style="width: 40px;">Select</th>
-                                <th>Cocktail Name</th>
-                                <th>Ingredients</th>
-                                <th>Final ABV</th>
-                                <th>Family</th>
-                                <th>Cost Price</th>
-                                <th>Selling Price</th>
-                                <th>COGS %</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${sortedCocktails.map(cocktail => `
-                                <tr>
-                                    <td>
-                                        <input type="checkbox" class="cocktail-select-checkbox" 
-                                               data-cocktail-id="${cocktail.id}"
-                                               onchange="toggleCocktailForPrint(${venueId}, ${cocktail.id}, this.checked)">
-                                    </td>
-                                    <td style="font-weight: 600;">
-                                        <span style="cursor: pointer; color: var(--accent);" onclick="viewCocktailDetail(${venueId}, ${cocktail.id})">
-                                            ${cocktail.name}
-                                        </span>
-                                    </td>
-                                    <td>
-                                        <ul class="ingredients-list">
-                                            ${cocktail.recipe.map(r => `<li>${r.amount}${r.unit} ${r.ingredient}</li>`).join('')}
-                                        </ul>
-                                    </td>
-                                    <td>${cocktail.finalAbv.toFixed(1)}%</td>
-                                    <td>${cocktail.family || 'Signature'}</td>
-                                    <td>$${cocktail.pourCost.toFixed(2)}</td>
-                                    <td>
-                                        <input type="number" class="editable-price-input" value="${cocktail.sellingPrice}" 
-                                               step="0.01" min="0" 
-                                               onchange="updateCocktailSellingPrice(${venueId}, ${cocktail.id}, this.value)">
-                                    </td>
-                                    <td style="color: ${cocktail.cogs < 25 ? 'var(--profit)' : cocktail.cogs < 35 ? 'var(--warning)' : 'var(--loss)'}; font-weight: 600;">
-                                        ${cocktail.cogs}%
-                                    </td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                    
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(0,0,0,0.05);">
-                        <div>
-                            <span style="font-weight: 600;">Selected: </span>
-                            <span id="selectedCount">0</span> cocktails
-                        </div>
-                        <div style="display: flex; gap: 1rem;">
-                            <button class="btn btn-outline" onclick="clearCocktailSelection(${venueId})">
-                                <i class="fas fa-times"></i> Clear Selection
-                            </button>
-                            <button class="btn btn-preview" onclick="previewSelectedSpecsPDF(${venueId})">
-                                <i class="fas fa-eye"></i> Preview Selected
-                            </button>
-                            <button class="btn btn-pdf" onclick="printSelectedCocktailSpecs(${venueId})">
-                                <i class="fas fa-file-pdf"></i> Print Specs
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            updateSelectedCount();
-        }
-
-        // Preview Menu PDF (Overview)
-        function previewMenuPDF(venueId) {
-            const venue = AppState.venues.find(v => v.id === venueId);
-            const sortedCocktails = [...venue.cocktails].sort((a, b) => a.name.localeCompare(b.name));
-            
-            let previewHTML = `
-                <div style="padding: 1rem;">
-                    <div style="text-align: center; margin-bottom: 2rem;">
-                        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 0.5rem;">
-                            <div style="width: 40px; height: 40px; background: #000000; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
-                                <i class="fas fa-sheep"></i>
-                            </div>
-                            <h1 style="color: #2C3E50; font-size: 1.75rem;">BLACK SHEEP</h1>
-                        </div>
-                        <p style="color: #E67E22; font-weight: 600;">${venue.name} - Cocktail Menu Overview</p>
-                        <p style="color: #95A5A6; font-size: 0.875rem;">Generated: ${new Date().toLocaleDateString()}</p>
-                    </div>
-                    
-                    <table class="pdf-preview-table">
-                        <thead>
-                            <tr>
-                                <th>Cocktail Name</th>
-                                <th>Family</th>
-                                <th>Final ABV</th>
-                                <th>Cost Price</th>
-                                <th>Selling Price</th>
-                                <th>COGS %</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            ${sortedCocktails.map(cocktail => `
-                                <tr>
-                                    <td style="font-weight: 600;">${cocktail.name}</td>
-                                    <td>${cocktail.family || 'Signature'}</td>
-                                    <td>${cocktail.finalAbv.toFixed(1)}%</td>
-                                    <td>$${cocktail.pourCost.toFixed(2)}</td>
-                                    <td>$${cocktail.sellingPrice}</td>
-                                    <td style="color: ${cocktail.cogs < 25 ? '#27AE60' : cocktail.cogs < 35 ? '#F39C12' : '#E74C3C'}; font-weight: 600;">
-                                        ${cocktail.cogs}%
-                                    </td>
-                                </tr>
-                            `).join('')}
-                        </tbody>
-                    </table>
-                    
-                    <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ECF0F1; text-align: center; color: #95A5A6; font-size: 0.75rem;">
-                        <p>Black Sheep Restaurants • Confidential</p>
-                    </div>
-                </div>
-            `;
-            
-            AppState.pdfPreviewData = { venue, cocktails: sortedCocktails, type: 'menu' };
-            AppState.pdfPreviewType = 'menu';
-            
-            document.getElementById('pdfPreviewTitle').innerHTML = '<i class="fas fa-file-pdf"></i> Menu Overview Preview';
-            document.getElementById('pdfPreviewContent').innerHTML = previewHTML;
-            document.getElementById('pdfPreviewModal').style.display = 'flex';
-        }
-
-        // Preview Specs PDF
-        function previewSpecsPDF(venueId) {
-            const venue = AppState.venues.find(v => v.id === venueId);
-            const sortedCocktails = [...venue.cocktails].sort((a, b) => a.name.localeCompare(b.name));
-            
-            let previewHTML = '';
-            
-            sortedCocktails.forEach(cocktail => {
-                previewHTML += `
-                    <div class="pdf-spec-card">
-                        <div class="pdf-spec-header">
-                            <div>
-                                <div class="pdf-spec-name">${cocktail.name}</div>
-                                <div class="pdf-spec-family">${venue.name} • ${cocktail.family || 'Signature'}</div>
-                            </div>
-                        </div>
-                        
-                        <div style="margin-bottom: 1rem;">
-                            <div style="font-weight: 600; color: #2C3E50; margin-bottom: 0.5rem;">RECIPE</div>
-                            <ul style="list-style: none; padding: 0; margin: 0;">
-                                ${cocktail.recipe.map(item => `<li style="padding: 0.25rem 0; font-size: 0.875rem; color: #34495E;">• ${item.amount}${item.unit} ${item.ingredient}</li>`).join('')}
-                            </ul>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-                            <div><span style="font-weight: 600;">Glassware:</span> ${cocktail.glassware}</div>
-                            <div><span style="font-weight: 600;">Garnish:</span> ${cocktail.garnish}</div>
-                        </div>
-                        
-                        <div>
-                            <div style="font-weight: 600; color: #2C3E50; margin-bottom: 0.25rem;">METHOD</div>
-                            <p style="color: #34495E; font-size: 0.875rem; line-height: 1.5;">${cocktail.method}</p>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            AppState.pdfPreviewData = { venue, cocktails: sortedCocktails, type: 'specs' };
-            AppState.pdfPreviewType = 'specs';
-            
-            document.getElementById('pdfPreviewTitle').innerHTML = '<i class="fas fa-file-pdf"></i> Cocktail Specs Preview';
-            document.getElementById('pdfPreviewContent').innerHTML = previewHTML;
-            document.getElementById('pdfPreviewModal').style.display = 'flex';
-        }
-
-        // Preview Selected Specs PDF
-        function previewSelectedSpecsPDF(venueId) {
-            const venue = AppState.venues.find(v => v.id === venueId);
-            const selectedCocktails = venue.cocktails.filter(c => AppState.selectedCocktailsForPrint.includes(c.id));
-            
-            if (selectedCocktails.length === 0) {
-                showToast('⚠️ Please select at least one cocktail to preview');
-                return;
-            }
-            
-            let previewHTML = '';
-            
-            selectedCocktails.forEach(cocktail => {
-                previewHTML += `
-                    <div class="pdf-spec-card">
-                        <div class="pdf-spec-header">
-                            <div>
-                                <div class="pdf-spec-name">${cocktail.name}</div>
-                                <div class="pdf-spec-family">${venue.name} • ${cocktail.family || 'Signature'}</div>
-                            </div>
-                        </div>
-                        
-                        <div style="margin-bottom: 1rem;">
-                            <div style="font-weight: 600; color: #2C3E50; margin-bottom: 0.5rem;">RECIPE</div>
-                            <ul style="list-style: none; padding: 0; margin: 0;">
-                                ${cocktail.recipe.map(item => `<li style="padding: 0.25rem 0; font-size: 0.875rem; color: #34495E;">• ${item.amount}${item.unit} ${item.ingredient}</li>`).join('')}
-                            </ul>
-                        </div>
-                        
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
-                            <div><span style="font-weight: 600;">Glassware:</span> ${cocktail.glassware}</div>
-                            <div><span style="font-weight: 600;">Garnish:</span> ${cocktail.garnish}</div>
-                        </div>
-                        
-                        <div>
-                            <div style="font-weight: 600; color: #2C3E50; margin-bottom: 0.25rem;">METHOD</div>
-                            <p style="color: #34495E; font-size: 0.875rem; line-height: 1.5;">${cocktail.method}</p>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            AppState.pdfPreviewData = { venue, cocktails: selectedCocktails, type: 'selected-specs' };
-            AppState.pdfPreviewType = 'selected-specs';
-            
-            document.getElementById('pdfPreviewTitle').innerHTML = '<i class="fas fa-file-pdf"></i> Selected Cocktail Specs Preview';
-            document.getElementById('pdfPreviewContent').innerHTML = previewHTML;
-            document.getElementById('pdfPreviewModal').style.display = 'flex';
-        }
-
-        // Close PDF Preview
-        function closePDFPreview() {
-            document.getElementById('pdfPreviewModal').style.display = 'none';
-            AppState.pdfPreviewData = null;
-            AppState.pdfPreviewType = null;
-        }
-
-        // Download PDF from Preview
-        async function downloadPDFFromPreview() {
-            if (!AppState.pdfPreviewData) return;
-            
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF({
-                orientation: 'portrait',
-                unit: 'mm',
-                format: 'a4'
-            });
-
-            if (AppState.pdfPreviewType === 'menu') {
-                await generateMenuPDF(pdf, AppState.pdfPreviewData.venue, AppState.pdfPreviewData.cocktails);
-            } else {
-                await generateSpecsPDF(pdf, AppState.pdfPreviewData.venue, AppState.pdfPreviewData.cocktails);
-            }
-            
-            closePDFPreview();
-        }
-
-        // Share PDF from Preview
-        async function sharePDFFromPreview() {
-            if (!AppState.pdfPreviewData) return;
-            
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF({
-                orientation: 'portrait',
-                unit: 'mm',
-                format: 'a4'
-            });
-
-            if (AppState.pdfPreviewType === 'menu') {
-                await generateMenuPDF(pdf, AppState.pdfPreviewData.venue, AppState.pdfPreviewData.cocktails);
-            } else {
-                await generateSpecsPDF(pdf, AppState.pdfPreviewData.venue, AppState.pdfPreviewData.cocktails);
-            }
-            
-            const pdfBlob = pdf.output('blob');
-            const pdfUrl = URL.createObjectURL(pdfBlob);
-            
-            if (navigator.share) {
-                try {
-                    await navigator.share({
-                        title: `${AppState.pdfPreviewData.venue.name} - Cocktail ${AppState.pdfPreviewType === 'menu' ? 'Menu' : 'Specs'}`,
-                        files: [new File([pdfBlob], `${AppState.pdfPreviewData.venue.name}_${AppState.pdfPreviewType}.pdf`, { type: 'application/pdf' })]
-                    });
-                    showToast('✅ PDF shared successfully');
-                } catch (error) {
-                    window.open(pdfUrl, '_blank');
-                }
-            } else {
-                window.open(pdfUrl, '_blank');
-            }
-            
-            closePDFPreview();
-        }
-
-        // Generate Menu PDF
-        async function generateMenuPDF(pdf, venue, cocktails) {
-            let yOffset = 20;
-            const pageHeight = pdf.internal.pageSize.height;
-            const margin = 20;
-
-            pdf.setFillColor(0, 0, 0);
-            pdf.circle(30, yOffset, 8, 'F');
-            pdf.setTextColor(230, 126, 34);
-            pdf.setFontSize(24);
-            pdf.setFont('helvetica', 'bold');
-            pdf.text('BLACK SHEEP', 45, yOffset + 5);
-            pdf.setTextColor(44, 62, 80);
-            pdf.setFontSize(16);
-            pdf.text(venue.name, 45, yOffset + 15);
-            
-            yOffset += 25;
-            
-            pdf.setDrawColor(230, 126, 34);
-            pdf.setLineWidth(0.5);
-            pdf.line(margin, yOffset, pdf.internal.pageSize.width - margin, yOffset);
-            
-            yOffset += 15;
-
-            pdf.setFillColor(236, 240, 241);
-            pdf.rect(margin, yOffset - 4, pdf.internal.pageSize.width - 40, 10, 'F');
-            pdf.setTextColor(44, 62, 80);
-            pdf.setFontSize(10);
-            pdf.setFont('helvetica', 'bold');
-            pdf.text('Cocktail Name', margin + 2, yOffset);
-            pdf.text('Family', margin + 60, yOffset);
-            pdf.text('ABV', margin + 100, yOffset);
-            pdf.text('Cost', margin + 130, yOffset);
-            pdf.text('Selling', margin + 155, yOffset);
-            pdf.text('COGS', margin + 180, yOffset);
-            
-            yOffset += 10;
-
-            cocktails.forEach((cocktail, index) => {
-                if (yOffset > pageHeight - 20) {
-                    pdf.addPage();
-                    yOffset = 20;
-                }
-
-                pdf.setTextColor(52, 73, 94);
-                pdf.setFont('helvetica', 'normal');
-                pdf.text(cocktail.name, margin + 2, yOffset);
-                pdf.text(cocktail.family || 'Signature', margin + 60, yOffset);
-                pdf.text(`${cocktail.finalAbv.toFixed(1)}%`, margin + 100, yOffset);
-                pdf.text(`$${cocktail.pourCost.toFixed(2)}`, margin + 130, yOffset);
-                pdf.text(`$${cocktail.sellingPrice}`, margin + 155, yOffset);
-                
-                pdf.setTextColor(cocktail.cogs < 25 ? 39 : cocktail.cogs < 35 ? 243 : 231, 
-                               cocktail.cogs < 25 ? 174 : cocktail.cogs < 35 ? 156 : 76, 
-                               cocktail.cogs < 25 ? 96 : cocktail.cogs < 35 ? 18 : 60);
-                pdf.setFont('helvetica', 'bold');
-                pdf.text(`${cocktail.cogs}%`, margin + 180, yOffset);
-                
-                yOffset += 8;
-            });
-
-            pdf.save(`${venue.name}_Menu_Overview.pdf`);
-            showToast(`✅ Menu PDF generated`);
-        }
-
-        // Generate Specs PDF
-        async function generateSpecsPDF(pdf, venue, cocktails) {
-            let yOffset = 20;
-            const pageHeight = pdf.internal.pageSize.height;
-            const margin = 20;
-
-            pdf.setFillColor(0, 0, 0);
-            pdf.circle(30, yOffset, 8, 'F');
-            pdf.setTextColor(230, 126, 34);
-            pdf.setFontSize(24);
-            pdf.setFont('helvetica', 'bold');
-            pdf.text('BLACK SHEEP', 45, yOffset + 5);
-            pdf.setTextColor(44, 62, 80);
-            pdf.setFontSize(16);
-            pdf.text('COCKTAIL SPECS', 45, yOffset + 15);
-            
-            yOffset += 25;
-            
-            pdf.setDrawColor(230, 126, 34);
-            pdf.setLineWidth(0.5);
-            pdf.line(margin, yOffset, pdf.internal.pageSize.width - margin, yOffset);
-            
-            yOffset += 15;
-
-            for (let i = 0; i < cocktails.length; i++) {
-                const cocktail = cocktails[i];
-                
-                if (yOffset > pageHeight - 60) {
-                    pdf.addPage();
-                    yOffset = 20;
-                }
-
-                pdf.setTextColor(230, 126, 34);
-                pdf.setFontSize(18);
-                pdf.setFont('helvetica', 'bold');
-                pdf.text(cocktail.name, margin, yOffset);
-                
-                yOffset += 8;
-                
-                pdf.setTextColor(149, 165, 166);
-                pdf.setFontSize(11);
-                pdf.setFont('helvetica', 'normal');
-                pdf.text(`${venue.name} • ${cocktail.family || 'Signature'}`, margin, yOffset);
-                
-                yOffset += 12;
-
-                pdf.setTextColor(44, 62, 80);
-                pdf.setFontSize(12);
-                pdf.setFont('helvetica', 'bold');
-                pdf.text('RECIPE', margin, yOffset);
-                
-                yOffset += 6;
-                
-                cocktail.recipe.forEach((item) => {
-                    pdf.setTextColor(52, 73, 94);
-                    pdf.setFontSize(10);
-                    pdf.setFont('helvetica', 'normal');
-                    pdf.text(`• ${item.amount}${item.unit} ${item.ingredient}`, margin + 5, yOffset);
-                    yOffset += 5;
-                });
-                
-                yOffset += 5;
-
-                pdf.setTextColor(44, 62, 80);
-                pdf.setFontSize(11);
-                pdf.setFont('helvetica', 'bold');
-                pdf.text('GLASSWARE:', margin, yOffset);
-                pdf.setTextColor(52, 73, 94);
-                pdf.setFont('helvetica', 'normal');
-                pdf.text(` ${cocktail.glassware}`, margin + 35, yOffset);
-                
-                yOffset += 6;
-                
-                pdf.setTextColor(44, 62, 80);
-                pdf.setFont('helvetica', 'bold');
-                pdf.text('GARNISH:', margin, yOffset);
-                pdf.setTextColor(52, 73, 94);
-                pdf.setFont('helvetica', 'normal');
-                pdf.text(` ${cocktail.garnish}`, margin + 35, yOffset);
-                
-                yOffset += 8;
-
-                pdf.setTextColor(44, 62, 80);
-                pdf.setFontSize(12);
-                pdf.setFont('helvetica', 'bold');
-                pdf.text('METHOD', margin, yOffset);
-                
-                yOffset += 6;
-                
-                const methodLines = pdf.splitTextToSize(cocktail.method, pdf.internal.pageSize.width - 40);
-                pdf.setTextColor(52, 73, 94);
-                pdf.setFontSize(10);
-                pdf.setFont('helvetica', 'normal');
-                pdf.text(methodLines, margin + 5, yOffset);
-                
-                yOffset += methodLines.length * 5 + 15;
-            }
-
-            pdf.save(`${venue.name}_Cocktail_Specs.pdf`);
-            showToast(`✅ Specs PDF generated for ${cocktails.length} cocktails`);
         }
 
         // Update Cocktail Selling Price from Overview - Auto-update COGS
@@ -4049,6 +3994,9 @@
                                     <span class="cogs-badge ${cocktail.cogs < 25 ? 'cogs-good' : cocktail.cogs < 35 ? 'cogs-warning' : 'cogs-high'}">
                                         COGS: ${cocktail.cogs}%
                                     </span>
+                                    <button class="edit-btn" onclick="event.stopPropagation(); editCocktail(${venue.id}, ${cocktail.id})">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
                                     <button class="share-btn" onclick="event.stopPropagation(); shareCocktailSpec(${cocktail.id}, 'signature', ${venue.id})">
                                         <i class="fas fa-share-alt"></i> Share
                                     </button>
@@ -4100,7 +4048,7 @@
             AppState.selectedCocktail = cocktailId;
             AppState.scaleMethod = 'serving';
             AppState.scaleQuantity = 1;
-            AppState.dilutionType = 'shake';
+            AppState.dilutionType = 'none';
             AppState.customDilution = 0.20;
             AppState.showScaledResults = false;
             AppState.omittedIngredients = [];
@@ -4121,7 +4069,7 @@
             
             if (!cocktail) return;
 
-            let dilutionFactor = AppState.dilutionPresets[AppState.dilutionType] || 0.25;
+            let dilutionFactor = AppState.dilutionPresets[AppState.dilutionType] || 0;
             if (AppState.dilutionType === 'custom') {
                 dilutionFactor = AppState.customDilution;
             }
@@ -4132,7 +4080,7 @@
 
             const totalPreDilutionVolume = activeRecipe.reduce((acc, item) => {
                 if (item.unit === 'ml') return acc + item.amount;
-                if (item.unit === 'dash') return acc + 0.92;
+                if (item.unit === 'dash') return acc + (item.amount * DASH_TO_ML);
                 if (item.unit === 'oz') return acc + (item.amount * 29.5735);
                 return acc;
             }, 0);
@@ -4141,13 +4089,14 @@
                 ? AppState.scaleQuantity / (cocktail.batchSize || 1)
                 : AppState.scaleQuantity / totalPreDilutionVolume;
             
-            const waterAmount = AppState.showScaledResults ? totalPreDilutionVolume * dilutionFactor * scaleFactor : 0;
+            const waterAmount = AppState.showScaledResults && dilutionFactor > 0 ? totalPreDilutionVolume * dilutionFactor * scaleFactor : 0;
             
             let scaledRecipe = [];
             let totalVolume = 0;
             let batchCost = 0;
             let batchRevenue = 0;
             let finalAbv = 0;
+            let servingsFromVolume = 0;
             
             if (AppState.showScaledResults) {
                 scaledRecipe = activeRecipe.map(item => ({
@@ -4170,8 +4119,16 @@
                 totalVolume = scaledRecipe.reduce((acc, item) => acc + parseFloat(item.scaledAmount), 0);
                 batchCost = activeRecipe.reduce((acc, item) => acc + (item.pourCost * scaleFactor), 0);
                 batchRevenue = (cocktail.sellingPrice * (AppState.scaleMethod === 'serving' ? AppState.scaleQuantity : totalVolume / 150));
+                servingsFromVolume = Math.round(totalVolume / 150);
                 
-                const totalAlcohol = activeRecipe.reduce((acc, item) => acc + (item.amount * (item.abv / 100)), 0);
+                const totalAlcohol = activeRecipe.reduce((acc, item) => {
+                    let amount = item.amount;
+                    if (item.unit === 'dash') {
+                        amount = amount * DASH_TO_ML;
+                    }
+                    return acc + (amount * (item.abv / 100));
+                }, 0);
+                
                 finalAbv = totalPreDilutionVolume > 0 
                     ? (totalAlcohol / totalPreDilutionVolume) / (1 + dilutionFactor) * 100 
                     : 0;
@@ -4403,16 +4360,24 @@
                                             Scaled Recipe (${scaleFactor.toFixed(2)}x)
                                         </h4>
                                         
-                                        <div class="water-note">
-                                            <i class="fas fa-tint"></i> Dilution: ${(dilutionFactor * 100).toFixed(0)}% • Water added: ${waterAmount.toFixed(0)}ml
-                                        </div>
+                                        ${dilutionFactor > 0 ? `
+                                            <div class="water-note">
+                                                <i class="fas fa-tint"></i> Dilution: ${(dilutionFactor * 100).toFixed(0)}% • Water added: ${waterAmount.toFixed(0)}ml
+                                            </div>
+                                        ` : ''}
+                                        
+                                        ${AppState.scaleMethod === 'volume' ? `
+                                            <div class="serving-note">
+                                                <i class="fas fa-users"></i> This batch yields approximately ${servingsFromVolume} servings (based on 150ml per serving)
+                                            </div>
+                                        ` : ''}
                                         
                                         <table class="recipe-table">
                                             <thead>
                                                 <tr>
                                                     <th>Ingredient</th>
                                                     <th>Single</th>
-                                                    <th>Batch</th>
+                                                    <th>Batch (ml)</th>
                                                     <th>Unit</th>
                                                     <th>Batch Cost</th>
                                                 </tr>
@@ -4423,7 +4388,7 @@
                                                         <td>${item.ingredient} ${item.isWater ? '💧' : ''}</td>
                                                         <td>${item.amount || '-'}</td>
                                                         <td style="font-weight: 700; color: var(--accent);">${item.scaledAmount}</td>
-                                                        <td>${item.unit}</td>
+                                                        <td>ml</td>
                                                         <td>$${(item.pourCost * scaleFactor).toFixed(2)}</td>
                                                     </tr>
                                                 `).join('')}
@@ -4433,7 +4398,7 @@
                                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
                                             <div style="background: var(--white); padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
                                                 <div style="font-size: 0.75rem; color: var(--gray); margin-bottom: 0.5rem;">Total Volume</div>
-                                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent);">${(totalVolume / 1000).toFixed(2)}L</div>
+                                                <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent);">${totalVolume.toFixed(0)}ml</div>
                                                 <div style="font-size: 0.75rem; color: var(--gray); margin-top: 0.25rem;">Batch size</div>
                                             </div>
                                             <div style="background: var(--white); padding: 1.25rem; border-radius: 12px; border: 1px solid rgba(0,0,0,0.05);">
@@ -4508,7 +4473,113 @@
                 format: 'a4'
             });
 
-            await generateSpecsPDF(pdf, venue, selectedCocktails);
+            let yOffset = 20;
+            const pageHeight = pdf.internal.pageSize.height;
+            const margin = 20;
+
+            pdf.setFillColor(0, 0, 0);
+            pdf.circle(30, yOffset, 8, 'F');
+            pdf.setTextColor(230, 126, 34);
+            pdf.setFontSize(24);
+            pdf.setFont('helvetica', 'bold');
+            pdf.text('🐑 BLACK SHEEP', 45, yOffset + 5);
+            pdf.setTextColor(44, 62, 80);
+            pdf.setFontSize(16);
+            pdf.text('COCKTAIL SPEC', 45, yOffset + 15);
+            
+            yOffset += 25;
+            
+            pdf.setDrawColor(230, 126, 34);
+            pdf.setLineWidth(0.5);
+            pdf.line(margin, yOffset, pdf.internal.pageSize.width - margin, yOffset);
+            
+            yOffset += 15;
+
+            for (let i = 0; i < selectedCocktails.length; i++) {
+                const cocktail = selectedCocktails[i];
+                
+                if (yOffset > pageHeight - 40) {
+                    pdf.addPage();
+                    yOffset = 20;
+                }
+
+                pdf.setTextColor(230, 126, 34);
+                pdf.setFontSize(18);
+                pdf.setFont('helvetica', 'bold');
+                pdf.text(cocktail.name, margin, yOffset);
+                
+                yOffset += 8;
+                
+                pdf.setTextColor(149, 165, 166);
+                pdf.setFontSize(11);
+                pdf.setFont('helvetica', 'normal');
+                pdf.text(`${venue.name} • ${cocktail.family || 'Signature'}`, margin, yOffset);
+                
+                yOffset += 12;
+
+                pdf.setTextColor(44, 62, 80);
+                pdf.setFontSize(12);
+                pdf.setFont('helvetica', 'bold');
+                pdf.text('RECIPE', margin, yOffset);
+                
+                yOffset += 6;
+                
+                cocktail.recipe.forEach((item) => {
+                    pdf.setTextColor(52, 73, 94);
+                    pdf.setFontSize(10);
+                    pdf.setFont('helvetica', 'normal');
+                    pdf.text(`• ${item.amount}${item.unit} ${item.ingredient}`, margin + 5, yOffset);
+                    yOffset += 5;
+                });
+                
+                yOffset += 5;
+
+                pdf.setTextColor(44, 62, 80);
+                pdf.setFontSize(11);
+                pdf.setFont('helvetica', 'bold');
+                pdf.text('GLASSWARE:', margin, yOffset);
+                pdf.setTextColor(52, 73, 94);
+                pdf.setFont('helvetica', 'normal');
+                pdf.text(` ${cocktail.glassware}`, margin + 35, yOffset);
+                
+                yOffset += 6;
+                
+                pdf.setTextColor(44, 62, 80);
+                pdf.setFont('helvetica', 'bold');
+                pdf.text('GARNISH:', margin, yOffset);
+                pdf.setTextColor(52, 73, 94);
+                pdf.setFont('helvetica', 'normal');
+                pdf.text(` ${cocktail.garnish}`, margin + 35, yOffset);
+                
+                yOffset += 8;
+
+                pdf.setTextColor(44, 62, 80);
+                pdf.setFontSize(12);
+                pdf.setFont('helvetica', 'bold');
+                pdf.text('METHOD', margin, yOffset);
+                
+                yOffset += 6;
+                
+                const methodLines = pdf.splitTextToSize(cocktail.method, pdf.internal.pageSize.width - 40);
+                pdf.setTextColor(52, 73, 94);
+                pdf.setFontSize(10);
+                pdf.setFont('helvetica', 'normal');
+                pdf.text(methodLines, margin + 5, yOffset);
+                
+                yOffset += methodLines.length * 5 + 10;
+
+                if (i < selectedCocktails.length - 1) {
+                    pdf.setDrawColor(230, 126, 34);
+                    pdf.setLineWidth(0.2);
+                    pdf.setLineDash([2, 2]);
+                    pdf.line(margin, yOffset, pdf.internal.pageSize.width - margin, yOffset);
+                    pdf.setLineDash([]);
+                    yOffset += 15;
+                }
+            }
+
+            pdf.save(`${venue.name}_Cocktail_Specs.pdf`);
+            showToast(`✅ PDF generated for ${selectedCocktails.length} cocktails`);
             
             clearCocktailSelection(venueId);
         }
@@ -4638,7 +4709,7 @@
             document.getElementById('cocktailMethod').value = cocktail.method || '';
             document.getElementById('cocktailNotes').value = cocktail.notes || '';
             
-            const dilutionPreset = cocktail.dilutionPreset || 'shake';
+            const dilutionPreset = cocktail.dilutionPreset || 'none';
             document.querySelectorAll('input[name="dilutionPreset"]').forEach(radio => {
                 radio.checked = radio.value === dilutionPreset;
             });
@@ -4657,6 +4728,12 @@
                     <td><input type="number" value="${item.bottleSize || 750}" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientCost(this)" required></td>
                     <td><input type="number" value="${item.bottleCost || 0}" step="0.01" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientCost(this)" required></td>
                     <td><input type="number" value="${item.amount}" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientCost(this)" required></td>
+                    <td>
+                        <select style="width: 100%; padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;" onchange="convertUnit(this)">
+                            <option value="ml" ${item.unit === 'ml' ? 'selected' : ''}>ml</option>
+                            <option value="dash" ${item.unit === 'dash' ? 'selected' : ''}>dash</option>
+                        </select>
+                    </td>
                     <td><input type="number" value="${item.pourCost || 0}" step="0.001" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="pour-cost"></td>
                     <td><input type="number" value="${item.abv || 40}" step="0.1" min="0" max="100" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientABV(this)" required></td>
                     <td><button type="button" onclick="removeIngredientRow(this)" style="background: none; border: none; color: var(--danger);"><i class="fas fa-trash"></i></button></td>
@@ -4669,9 +4746,12 @@
                 
                 const bottleSize = item.bottleSize || 750;
                 const bottleCost = item.bottleCost || 0;
-                const pour = item.amount;
+                let pour = item.amount;
+                if (item.unit === 'dash') {
+                    pour = pour * DASH_TO_ML;
+                }
                 const pourCost = bottleSize > 0 ? (pour / bottleSize) * bottleCost : 0;
-                const pourCostInput = newRow.cells[4].querySelector('input');
+                const pourCostInput = newRow.cells[5].querySelector('input');
                 pourCostInput.value = pourCost.toFixed(3);
             });
             
@@ -4695,7 +4775,7 @@
             
             if (!cocktail) return;
             
-            let dilutionPreset = 'shake';
+            let dilutionPreset = 'none';
             let customDilution = null;
             
             const selectedDilution = document.querySelector('input[name="dilutionPreset"]:checked');
@@ -4717,9 +4797,18 @@
             
             rows.forEach(row => {
                 const inputs = row.querySelectorAll('input');
+                const unitSelect = row.querySelector('select');
                 if (inputs[0].value && inputs[1].value && inputs[3].value) {
                     const spiritId = row.dataset.spiritId || null;
-                    const pourCost = (parseFloat(inputs[3].value) / parseFloat(inputs[1].value)) * parseFloat(inputs[2].value);
+                    const unit = unitSelect ? unitSelect.value : 'ml';
+                    let pourAmount = parseFloat(inputs[3].value);
+                    
+                    // Convert to ml for calculation
+                    if (unit === 'dash') {
+                        pourAmount = pourAmount * DASH_TO_ML;
+                    }
+                    
+                    const pourCost = (pourAmount / parseFloat(inputs[1].value)) * parseFloat(inputs[2].value);
                     totalPourCost += pourCost;
                     
                     recipe.push({
@@ -4727,9 +4816,9 @@
                         bottleSize: parseFloat(inputs[1].value),
                         bottleCost: parseFloat(inputs[2].value),
                         amount: parseFloat(inputs[3].value),
-                        unit: 'ml',
+                        unit: unit,
                         pourCost: pourCost,
-                        abv: parseFloat(inputs[5].value) || 0,
+                        abv: parseFloat(inputs[6].value) || 0,
                         spiritId: spiritId
                     });
                 }
@@ -4738,10 +4827,24 @@
             const sellingPrice = parseFloat(document.getElementById('cocktailSellingPrice').value);
             const cogs = (totalPourCost / sellingPrice * 100);
             
-            const totalAlcohol = recipe.reduce((acc, item) => acc + (item.amount * (item.abv / 100)), 0);
-            const totalVolume = recipe.reduce((acc, item) => acc + item.amount, 0);
-            const dilutionFactor = customDilution || AppState.dilutionPresets[dilutionPreset] || 0.25;
-            const finalAbv = totalVolume > 0 ? (totalAlcohol / totalVolume) / (1 + dilutionFactor) * 100 : 25;
+            const totalAlcohol = recipe.reduce((acc, item) => {
+                let amount = item.amount;
+                if (item.unit === 'dash') {
+                    amount = amount * DASH_TO_ML;
+                }
+                return acc + (amount * (item.abv / 100));
+            }, 0);
+            
+            const totalVolume = recipe.reduce((acc, item) => {
+                let amount = item.amount;
+                if (item.unit === 'dash') {
+                    amount = amount * DASH_TO_ML;
+                }
+                return acc + amount;
+            }, 0);
+            
+            const dilutionFactor = customDilution || AppState.dilutionPresets[dilutionPreset] || 0;
+            const finalAbv = totalVolume > 0 ? (totalAlcohol / totalVolume) / (1 + dilutionFactor) * 100 : 0;
             
             cocktail.name = document.getElementById('cocktailName').value;
             cocktail.category = document.getElementById('cocktailCategory').value;
@@ -4777,7 +4880,7 @@
             document.getElementById('newCocktailForm').reset();
             
             setCocktailCategory('signature');
-            document.getElementById('dilutionShake').checked = true;
+            document.getElementById('dilutionNone').checked = true;
             document.getElementById('useCustomDilution').checked = false;
             document.getElementById('customDilutionValue').style.display = 'none';
             document.getElementById('customDilutionValue').disabled = true;
@@ -4796,6 +4899,12 @@
                     <td><input type="number" placeholder="750" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientCost(this)" required></td>
                     <td><input type="number" placeholder="0" step="0.01" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientCost(this)" required></td>
                     <td><input type="number" placeholder="50" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientCost(this)" required></td>
+                    <td>
+                        <select style="width: 100%; padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;" onchange="convertUnit(this)">
+                            <option value="ml">ml</option>
+                            <option value="dash">dash</option>
+                        </select>
+                    </td>
                     <td><input type="number" placeholder="0.00" step="0.001" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="pour-cost"></td>
                     <td><input type="number" placeholder="40" step="0.1" min="0" max="100" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientABV(this)" required></td>
                     <td><button type="button" onclick="removeIngredientRow(this)" style="background: none; border: none; color: var(--danger);"><i class="fas fa-trash"></i></button></td>
@@ -4855,8 +4964,15 @@
             const row = input.closest('tr');
             const bottleSize = parseFloat(row.cells[1].querySelector('input').value) || 0;
             const bottleCost = parseFloat(row.cells[2].querySelector('input').value) || 0;
-            const pour = parseFloat(row.cells[3].querySelector('input').value) || 0;
-            const pourCostInput = row.cells[4].querySelector('input');
+            let pour = parseFloat(row.cells[3].querySelector('input').value) || 0;
+            const unitSelect = row.querySelector('select');
+            
+            // Convert to ml for calculation
+            if (unitSelect && unitSelect.value === 'dash') {
+                pour = pour * DASH_TO_ML;
+            }
+            
+            const pourCostInput = row.cells[5].querySelector('input');
             
             const pourCost = bottleSize > 0 ? (pour / bottleSize) * bottleCost : 0;
             pourCostInput.value = pourCost.toFixed(3);
@@ -4893,18 +5009,22 @@
             
             rows.forEach(row => {
                 const inputs = row.querySelectorAll('input');
-                if (inputs[0].value && inputs[3].value && inputs[5].value) {
-                    const amount = parseFloat(inputs[3].value) || 0;
-                    const abv = parseFloat(inputs[5].value) || 0;
+                const unitSelect = row.querySelector('select');
+                if (inputs[0].value && inputs[3].value && inputs[6].value) {
+                    let amount = parseFloat(inputs[3].value) || 0;
+                    if (unitSelect && unitSelect.value === 'dash') {
+                        amount = amount * DASH_TO_ML;
+                    }
+                    const abv = parseFloat(inputs[6].value) || 0;
                     totalAlcohol += amount * (abv / 100);
                     totalVolume += amount;
                 }
             });
             
             const selectedDilution = document.querySelector('input[name="dilutionPreset"]:checked');
-            let dilutionFactor = 0.25;
+            let dilutionFactor = 0;
             if (selectedDilution) {
-                dilutionFactor = AppState.dilutionPresets[selectedDilution.value] || 0.25;
+                dilutionFactor = AppState.dilutionPresets[selectedDilution.value] || 0;
             }
             
             const useCustom = document.getElementById('useCustomDilution');
@@ -4931,6 +5051,12 @@
                 <td><input type="number" placeholder="750" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientCost(this)" required></td>
                 <td><input type="number" placeholder="0" step="0.01" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientCost(this)" required></td>
                 <td><input type="number" placeholder="25" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientCost(this)" required></td>
+                <td>
+                    <select style="width: 100%; padding: 0.5rem; border: 1px solid rgba(0,0,0,0.1); border-radius: 6px;" onchange="convertUnit(this)">
+                        <option value="ml">ml</option>
+                        <option value="dash">dash</option>
+                    </select>
+                </td>
                 <td><input type="number" placeholder="0.00" step="0.001" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="pour-cost"></td>
                 <td><input type="number" placeholder="40" step="0.1" min="0" max="100" style="width: 100%; padding: 0.5rem;" onchange="calculateIngredientABV(this)" required></td>
                 <td><button type="button" onclick="removeIngredientRow(this)" style="background: none; border: none; color: var(--danger);"><i class="fas fa-trash"></i></button></td>
@@ -4990,7 +5116,7 @@
                 return;
             }
             
-            let dilutionPreset = 'shake';
+            let dilutionPreset = 'none';
             let customDilution = null;
             
             const selectedDilution = document.querySelector('input[name="dilutionPreset"]:checked');
@@ -5012,9 +5138,18 @@
             
             rows.forEach(row => {
                 const inputs = row.querySelectorAll('input');
+                const unitSelect = row.querySelector('select');
                 if (inputs[0].value && inputs[1].value && inputs[3].value) {
                     const spiritId = row.dataset.spiritId || null;
-                    const pourCost = (parseFloat(inputs[3].value) / parseFloat(inputs[1].value)) * parseFloat(inputs[2].value);
+                    const unit = unitSelect ? unitSelect.value : 'ml';
+                    let pourAmount = parseFloat(inputs[3].value);
+                    
+                    // Convert to ml for calculation
+                    if (unit === 'dash') {
+                        pourAmount = pourAmount * DASH_TO_ML;
+                    }
+                    
+                    const pourCost = (pourAmount / parseFloat(inputs[1].value)) * parseFloat(inputs[2].value);
                     totalPourCost += pourCost;
                     
                     recipe.push({
@@ -5022,9 +5157,9 @@
                         bottleSize: parseFloat(inputs[1].value),
                         bottleCost: parseFloat(inputs[2].value),
                         amount: parseFloat(inputs[3].value),
-                        unit: 'ml',
+                        unit: unit,
                         pourCost: pourCost,
-                        abv: parseFloat(inputs[5].value) || 0,
+                        abv: parseFloat(inputs[6].value) || 0,
                         spiritId: spiritId
                     });
                 }
@@ -5033,10 +5168,24 @@
             const sellingPrice = parseFloat(document.getElementById('cocktailSellingPrice').value);
             const cogs = (totalPourCost / sellingPrice * 100);
             
-            const totalAlcohol = recipe.reduce((acc, item) => acc + (item.amount * (item.abv / 100)), 0);
-            const totalVolume = recipe.reduce((acc, item) => acc + item.amount, 0);
-            const dilutionFactor = customDilution || AppState.dilutionPresets[dilutionPreset] || 0.25;
-            const finalAbv = totalVolume > 0 ? (totalAlcohol / totalVolume) / (1 + dilutionFactor) * 100 : 25;
+            const totalAlcohol = recipe.reduce((acc, item) => {
+                let amount = item.amount;
+                if (item.unit === 'dash') {
+                    amount = amount * DASH_TO_ML;
+                }
+                return acc + (amount * (item.abv / 100));
+            }, 0);
+            
+            const totalVolume = recipe.reduce((acc, item) => {
+                let amount = item.amount;
+                if (item.unit === 'dash') {
+                    amount = amount * DASH_TO_ML;
+                }
+                return acc + amount;
+            }, 0);
+            
+            const dilutionFactor = customDilution || AppState.dilutionPresets[dilutionPreset] || 0;
+            const finalAbv = totalVolume > 0 ? (totalAlcohol / totalVolume) / (1 + dilutionFactor) * 100 : 0;
             
             const newCocktail = {
                 id: AppState.nextCocktailId++,
@@ -5077,7 +5226,7 @@
         function saveNewClassicCocktail(event) {
             event.preventDefault();
             
-            let dilutionPreset = 'shake';
+            let dilutionPreset = 'none';
             let customDilution = null;
             
             const selectedDilution = document.querySelector('input[name="dilutionPreset"]:checked');
@@ -5099,9 +5248,18 @@
             
             rows.forEach(row => {
                 const inputs = row.querySelectorAll('input');
+                const unitSelect = row.querySelector('select');
                 if (inputs[0].value && inputs[1].value && inputs[3].value) {
                     const spiritId = row.dataset.spiritId || null;
-                    const pourCost = (parseFloat(inputs[3].value) / parseFloat(inputs[1].value)) * parseFloat(inputs[2].value);
+                    const unit = unitSelect ? unitSelect.value : 'ml';
+                    let pourAmount = parseFloat(inputs[3].value);
+                    
+                    // Convert to ml for calculation
+                    if (unit === 'dash') {
+                        pourAmount = pourAmount * DASH_TO_ML;
+                    }
+                    
+                    const pourCost = (pourAmount / parseFloat(inputs[1].value)) * parseFloat(inputs[2].value);
                     totalPourCost += pourCost;
                     
                     recipe.push({
@@ -5109,9 +5267,9 @@
                         bottleSize: parseFloat(inputs[1].value),
                         bottleCost: parseFloat(inputs[2].value),
                         amount: parseFloat(inputs[3].value),
-                        unit: 'ml',
+                        unit: unit,
                         pourCost: pourCost,
-                        abv: parseFloat(inputs[5].value) || 0,
+                        abv: parseFloat(inputs[6].value) || 0,
                         spiritId: spiritId
                     });
                 }
@@ -5120,10 +5278,24 @@
             const sellingPrice = parseFloat(document.getElementById('cocktailSellingPrice').value);
             const cogs = (totalPourCost / sellingPrice * 100);
             
-            const totalAlcohol = recipe.reduce((acc, item) => acc + (item.amount * (item.abv / 100)), 0);
-            const totalVolume = recipe.reduce((acc, item) => acc + item.amount, 0);
-            const dilutionFactor = customDilution || AppState.dilutionPresets[dilutionPreset] || 0.25;
-            const finalAbv = totalVolume > 0 ? (totalAlcohol / totalVolume) / (1 + dilutionFactor) * 100 : 25;
+            const totalAlcohol = recipe.reduce((acc, item) => {
+                let amount = item.amount;
+                if (item.unit === 'dash') {
+                    amount = amount * DASH_TO_ML;
+                }
+                return acc + (amount * (item.abv / 100));
+            }, 0);
+            
+            const totalVolume = recipe.reduce((acc, item) => {
+                let amount = item.amount;
+                if (item.unit === 'dash') {
+                    amount = amount * DASH_TO_ML;
+                }
+                return acc + amount;
+            }, 0);
+            
+            const dilutionFactor = customDilution || AppState.dilutionPresets[dilutionPreset] || 0;
+            const finalAbv = totalVolume > 0 ? (totalAlcohol / totalVolume) / (1 + dilutionFactor) * 100 : 0;
             
             const newCocktail = {
                 id: AppState.nextClassicCocktailId++,
@@ -5172,13 +5344,12 @@
             const tbody = document.getElementById('infusionIngredientTableBody');
             tbody.innerHTML = `
                 <tr class="infusion-ingredient-row">
-                    <td><input type="text" placeholder="Rhum Escale à La Rochelle" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionIngredientCost(this)" required></td>
+                    <td><input type="text" placeholder="Ingredient" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionIngredientCost(this)" required></td>
                     <td><input type="number" placeholder="500" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionIngredientCost(this)" required></td>
                     <td><input type="number" placeholder="0" step="0.01" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionIngredientCost(this)" required></td>
                     <td><input type="number" placeholder="50" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionIngredientCost(this)" required></td>
                     <td><input type="number" placeholder="0.00" step="0.001" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="infusion-pour-cost"></td>
                     <td><input type="number" placeholder="47" step="0.1" min="0" max="100" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionTotalABV(this)" required></td>
-                    <td><input type="number" placeholder="0.00" step="0.01" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="infusion-total-abv"></td>
                     <td><input type="number" class="infusion-scaling" value="3" min="0.1" step="0.1" style="width: 80px; padding: 0.5rem;" onchange="calculateInfusionScaling()"></td>
                     <td><input type="number" placeholder="0" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="infusion-scaled-pour"></td>
                     <td><button type="button" onclick="removeInfusionIngredientRow(this)" style="background: none; border: none; color: var(--danger);"><i class="fas fa-trash"></i></button></td>
@@ -5187,12 +5358,9 @@
             
             document.getElementById('infusionTotalPour').value = '0';
             document.getElementById('infusionTotalPourCost').value = '0.00';
-            document.getElementById('infusionTotalABV').value = '0.00';
             document.getElementById('infusionTotalScaledPour').value = '0';
             document.getElementById('infusionGlobalScaling').value = '3';
-            document.getElementById('infusionTotalScaledVolume').value = '0';
             document.getElementById('infusionYield').value = '0';
-            document.getElementById('infusionMetaDate').value = new Date().toLocaleDateString();
             document.getElementById('infusionDate').value = new Date().toLocaleDateString();
             
             modal.style.display = 'flex';
@@ -5209,7 +5377,6 @@
                 <td><input type="number" placeholder="50" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionIngredientCost(this)" required></td>
                 <td><input type="number" placeholder="0.00" step="0.001" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="infusion-pour-cost"></td>
                 <td><input type="number" placeholder="47" step="0.1" min="0" max="100" style="width: 100%; padding: 0.5rem;" onchange="calculateInfusionTotalABV(this)" required></td>
-                <td><input type="number" placeholder="0.00" step="0.01" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="infusion-total-abv"></td>
                 <td><input type="number" class="infusion-scaling" value="3" min="0.1" step="0.1" style="width: 80px; padding: 0.5rem;" onchange="calculateInfusionScaling()"></td>
                 <td><input type="number" placeholder="0" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="infusion-scaled-pour"></td>
                 <td><button type="button" onclick="removeInfusionIngredientRow(this)" style="background: none; border: none; color: var(--danger);"><i class="fas fa-trash"></i></button></td>
@@ -5270,7 +5437,6 @@
             
             document.getElementById('infusionTotalPour').value = totalPour.toFixed(1);
             document.getElementById('infusionTotalPourCost').value = totalPourCost.toFixed(2);
-            document.getElementById('infusionTotalABV').value = totalAbv.toFixed(2);
             
             calculateInfusionScaling();
         }
@@ -5291,7 +5457,6 @@
             });
             
             document.getElementById('infusionTotalScaledPour').value = totalScaledPour.toFixed(1);
-            document.getElementById('infusionTotalScaledVolume').value = totalScaledPour.toFixed(1);
             
             const yield_ml = totalScaledPour - (totalScaledPour * 0.2);
             document.getElementById('infusionYield').value = yield_ml.toFixed(1);
@@ -5328,18 +5493,16 @@
             const newInfusion = {
                 id: AppState.nextInfusionId++,
                 name: document.getElementById('infusionName').value,
+                category: document.getElementById('infusionCategory').value,
+                base: document.getElementById('infusionBase').value,
                 author: document.getElementById('infusionAuthor').value,
                 date: document.getElementById('infusionDate').value,
                 ingredients: ingredients,
                 totalPour: parseFloat(document.getElementById('infusionTotalPour').value),
                 totalPourCost: parseFloat(document.getElementById('infusionTotalPourCost').value),
-                totalABV: parseFloat(document.getElementById('infusionTotalABV').value),
                 scalingFactor: parseFloat(document.getElementById('infusionGlobalScaling').value),
                 totalScaledPour: parseFloat(document.getElementById('infusionTotalScaledPour').value),
-                totalScaledVolume: parseFloat(document.getElementById('infusionTotalScaledVolume').value),
                 yield: parseFloat(document.getElementById('infusionYield').value),
-                metaAuthor: document.getElementById('infusionMetaAuthor').value,
-                metaDate: document.getElementById('infusionMetaDate').value,
                 usedIn: document.getElementById('infusionUsedIn').value,
                 instructions: document.getElementById('infusionInstructions').value,
                 allergens: document.getElementById('infusionAllergens').value,
@@ -5374,7 +5537,6 @@
                     <td><input type="number" placeholder="30" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateDistillationIngredientCost(this)" required></td>
                     <td><input type="number" placeholder="0.00" step="0.001" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="distillation-pour-cost"></td>
                     <td><input type="number" placeholder="40" step="0.1" min="0" max="100" style="width: 100%; padding: 0.5rem;" onchange="calculateDistillationTotalABV(this)" required></td>
-                    <td><input type="number" placeholder="0.00" step="0.01" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="distillation-total-abv"></td>
                     <td><input type="number" class="distillation-scaling" value="3" min="0.1" step="0.1" style="width: 80px; padding: 0.5rem;" onchange="calculateDistillationScaling()"></td>
                     <td><input type="number" placeholder="0" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="distillation-scaled-pour"></td>
                     <td><button type="button" onclick="removeDistillationIngredientRow(this)" style="background: none; border: none; color: var(--danger);"><i class="fas fa-trash"></i></button></td>
@@ -5383,12 +5545,9 @@
             
             document.getElementById('distillationTotalPour').value = '0';
             document.getElementById('distillationTotalPourCost').value = '0.00';
-            document.getElementById('distillationTotalABV').value = '0.00';
             document.getElementById('distillationTotalScaledPour').value = '0';
             document.getElementById('distillationGlobalScaling').value = '3';
-            document.getElementById('distillationTotalScaledVolume').value = '0';
             document.getElementById('distillationYield').value = '0';
-            document.getElementById('distillationMetaDate').value = new Date().toLocaleDateString();
             document.getElementById('distillationDate').value = new Date().toLocaleDateString();
             document.getElementById('distillationTargetABV').value = '47';
             
@@ -5406,7 +5565,6 @@
                 <td><input type="number" placeholder="30" step="0.1" min="0" style="width: 100%; padding: 0.5rem;" onchange="calculateDistillationIngredientCost(this)" required></td>
                 <td><input type="number" placeholder="0.00" step="0.001" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="distillation-pour-cost"></td>
                 <td><input type="number" placeholder="40" step="0.1" min="0" max="100" style="width: 100%; padding: 0.5rem;" onchange="calculateDistillationTotalABV(this)" required></td>
-                <td><input type="number" placeholder="0.00" step="0.01" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="distillation-total-abv"></td>
                 <td><input type="number" class="distillation-scaling" value="3" min="0.1" step="0.1" style="width: 80px; padding: 0.5rem;" onchange="calculateDistillationScaling()"></td>
                 <td><input type="number" placeholder="0" readonly style="width: 100%; padding: 0.5rem; background: var(--light);" class="distillation-scaled-pour"></td>
                 <td><button type="button" onclick="removeDistillationIngredientRow(this)" style="background: none; border: none; color: var(--danger);"><i class="fas fa-trash"></i></button></td>
@@ -5467,7 +5625,6 @@
             
             document.getElementById('distillationTotalPour').value = totalPour.toFixed(1);
             document.getElementById('distillationTotalPourCost').value = totalPourCost.toFixed(2);
-            document.getElementById('distillationTotalABV').value = totalAbv.toFixed(2);
             
             calculateDistillationScaling();
         }
@@ -5488,7 +5645,6 @@
             });
             
             document.getElementById('distillationTotalScaledPour').value = totalScaledPour.toFixed(1);
-            document.getElementById('distillationTotalScaledVolume').value = totalScaledPour.toFixed(1);
             
             const yield_ml = totalScaledPour - (totalScaledPour * 0.2);
             document.getElementById('distillationYield').value = yield_ml.toFixed(1);
@@ -5525,20 +5681,17 @@
             const newDistillation = {
                 id: AppState.nextDistillationId++,
                 name: document.getElementById('distillationName').value,
+                category: document.getElementById('distillationCategory').value,
                 base: document.getElementById('distillationBase').value,
+                targetABV: parseFloat(document.getElementById('distillationTargetABV').value),
                 author: document.getElementById('distillationAuthor').value,
                 date: document.getElementById('distillationDate').value,
                 botanicals: botanicals,
-                targetABV: parseFloat(document.getElementById('distillationTargetABV').value),
                 totalPour: parseFloat(document.getElementById('distillationTotalPour').value),
                 totalPourCost: parseFloat(document.getElementById('distillationTotalPourCost').value),
-                totalABV: parseFloat(document.getElementById('distillationTotalABV').value),
                 scalingFactor: parseFloat(document.getElementById('distillationGlobalScaling').value),
                 totalScaledPour: parseFloat(document.getElementById('distillationTotalScaledPour').value),
-                totalScaledVolume: parseFloat(document.getElementById('distillationTotalScaledVolume').value),
                 yield: parseFloat(document.getElementById('distillationYield').value),
-                metaAuthor: document.getElementById('distillationMetaAuthor').value,
-                metaDate: document.getElementById('distillationMetaDate').value,
                 usedIn: document.getElementById('distillationUsedIn').value,
                 instructions: document.getElementById('distillationInstructions').value,
                 allergens: document.getElementById('distillationAllergens').value,
@@ -5572,16 +5725,17 @@
                         <div style="background: var(--white); border-radius: 20px; padding: 1.5rem; border-left: 4px solid var(--accent);">
                             <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
                                 <div style="font-weight: 600; color: var(--primary); font-size: 1.1rem;">${infusion.name}</div>
+                                <span style="background: rgba(230,126,34,0.1); padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem;">${infusion.category || 'Infusion'}</span>
                             </div>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
-                                <div><span style="color: var(--gray);">Author:</span> ${infusion.metaAuthor}</div>
-                                <div><span style="color: var(--gray);">Date:</span> ${infusion.metaDate}</div>
+                                <div><span style="color: var(--gray);">Base:</span> ${infusion.base}</div>
+                                <div><span style="color: var(--gray);">Author:</span> ${infusion.author}</div>
+                                <div><span style="color: var(--gray);">Date:</span> ${infusion.date}</div>
                                 <div><span style="color: var(--gray);">Total Pour:</span> ${infusion.totalPour}ml</div>
                                 <div><span style="color: var(--gray);">Pour Cost:</span> $${infusion.totalPourCost.toFixed(2)}</div>
                                 <div><span style="color: var(--gray);">Scaling:</span> ${infusion.scalingFactor}x</div>
-                                <div><span style="color: var(--gray);">Scaled Vol:</span> ${infusion.totalScaledVolume}ml</div>
+                                <div><span style="color: var(--gray);">Scaled Vol:</span> ${infusion.totalScaledPour}ml</div>
                                 <div><span style="color: var(--gray);">Yield:</span> ${infusion.yield}ml</div>
-                                <div><span style="color: var(--gray);">Loss:</span> 20%</div>
                             </div>
                             <div style="margin-bottom: 1rem;">
                                 <div style="color: var(--gray); margin-bottom: 0.25rem;">Ingredients</div>
@@ -5643,12 +5797,13 @@
                             </div>
                             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1rem;">
                                 <div><span style="color: var(--gray);">Base:</span> ${distillation.base}</div>
-                                <div><span style="color: var(--gray);">Author:</span> ${distillation.metaAuthor}</div>
-                                <div><span style="color: var(--gray);">Date:</span> ${distillation.metaDate}</div>
+                                <div><span style="color: var(--gray);">Category:</span> ${distillation.category || 'Spirit'}</div>
+                                <div><span style="color: var(--gray);">Author:</span> ${distillation.author}</div>
+                                <div><span style="color: var(--gray);">Date:</span> ${distillation.date}</div>
                                 <div><span style="color: var(--gray);">Total Pour:</span> ${distillation.totalPour}ml</div>
                                 <div><span style="color: var(--gray);">Pour Cost:</span> $${distillation.totalPourCost.toFixed(2)}</div>
                                 <div><span style="color: var(--gray);">Scaling:</span> ${distillation.scalingFactor}x</div>
-                                <div><span style="color: var(--gray);">Scaled Vol:</span> ${distillation.totalScaledVolume}ml</div>
+                                <div><span style="color: var(--gray);">Scaled Vol:</span> ${distillation.totalScaledPour}ml</div>
                                 <div><span style="color: var(--gray);">Yield:</span> ${distillation.yield}ml</div>
                             </div>
                             <div style="margin-bottom: 1rem;">
@@ -5769,6 +5924,391 @@
                     `;
                 }).join('');
             }
+        }
+
+        // Preview Menu PDF (Overview) - Updated with sheep emoji
+        function previewMenuPDF(venueId) {
+            const venue = AppState.venues.find(v => v.id === venueId);
+            const sortedCocktails = [...venue.cocktails].sort((a, b) => a.name.localeCompare(b.name));
+            
+            let previewHTML = `
+                <div style="padding: 1rem;">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 0.5rem;">
+                            <div style="width: 40px; height: 40px; background: #000000; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                                <i class="fas fa-sheep"></i>
+                            </div>
+                            <h1 style="color: #2C3E50; font-size: 1.75rem;">🐑 BLACK SHEEP</h1>
+                        </div>
+                        <p style="color: #E67E22; font-weight: 600;">${venue.name} - Cocktail Menu Overview</p>
+                        <p style="color: #95A5A6; font-size: 0.875rem;">Generated: ${new Date().toLocaleDateString()}</p>
+                    </div>
+                    
+                    <table class="pdf-preview-table">
+                        <thead>
+                            <tr>
+                                <th>Cocktail Name</th>
+                                <th>Family</th>
+                                <th>Final ABV</th>
+                                <th>Cost Price</th>
+                                <th>Selling Price</th>
+                                <th>COGS %</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${sortedCocktails.map(cocktail => `
+                                <tr>
+                                    <td style="font-weight: 600;">${cocktail.name}</td>
+                                    <td>${cocktail.family || 'Signature'}</td>
+                                    <td>${cocktail.finalAbv.toFixed(1)}%</td>
+                                    <td>$${cocktail.pourCost.toFixed(2)}</td>
+                                    <td>$${cocktail.sellingPrice}</td>
+                                    <td style="color: ${cocktail.cogs < 25 ? '#27AE60' : cocktail.cogs < 35 ? '#F39C12' : '#E74C3C'}; font-weight: 600;">
+                                        ${cocktail.cogs}%
+                                    </td>
+                                </tr>
+                            `).join('')}
+                        </tbody>
+                    </table>
+                    
+                    <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ECF0F1; text-align: center; color: #95A5A6; font-size: 0.75rem;">
+                        <p>Black Sheep Restaurants • Confidential</p>
+                    </div>
+                </div>
+            `;
+            
+            AppState.pdfPreviewData = { venue, cocktails: sortedCocktails, type: 'menu' };
+            AppState.pdfPreviewType = 'menu';
+            
+            document.getElementById('pdfPreviewTitle').innerHTML = '<i class="fas fa-file-pdf"></i> Menu Overview Preview';
+            document.getElementById('pdfPreviewContent').innerHTML = previewHTML;
+            document.getElementById('pdfPreviewModal').style.display = 'flex';
+        }
+
+        // Preview Specs PDF - Updated with sheep emoji
+        function previewSpecsPDF(venueId) {
+            const venue = AppState.venues.find(v => v.id === venueId);
+            const sortedCocktails = [...venue.cocktails].sort((a, b) => a.name.localeCompare(b.name));
+            
+            let previewHTML = '';
+            
+            sortedCocktails.forEach(cocktail => {
+                previewHTML += `
+                    <div class="pdf-spec-card">
+                        <div class="pdf-spec-header">
+                            <div>
+                                <div class="pdf-spec-name">${cocktail.name}</div>
+                                <div class="pdf-spec-family">${venue.name} • ${cocktail.family || 'Signature'}</div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <div style="font-weight: 600; color: #2C3E50; margin-bottom: 0.5rem;">RECIPE</div>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                ${cocktail.recipe.map(item => `<li style="padding: 0.25rem 0; font-size: 0.875rem; color: #34495E;">• ${item.amount}${item.unit} ${item.ingredient}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div><span style="font-weight: 600;">Glassware:</span> ${cocktail.glassware}</div>
+                            <div><span style="font-weight: 600;">Garnish:</span> ${cocktail.garnish}</div>
+                        </div>
+                        
+                        <div>
+                            <div style="font-weight: 600; color: #2C3E50; margin-bottom: 0.25rem;">METHOD</div>
+                            <p style="color: #34495E; font-size: 0.875rem; line-height: 1.5;">${cocktail.method}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            AppState.pdfPreviewData = { venue, cocktails: sortedCocktails, type: 'specs' };
+            AppState.pdfPreviewType = 'specs';
+            
+            document.getElementById('pdfPreviewTitle').innerHTML = '<i class="fas fa-file-pdf"></i> Cocktail Specs Preview';
+            document.getElementById('pdfPreviewContent').innerHTML = previewHTML;
+            document.getElementById('pdfPreviewModal').style.display = 'flex';
+        }
+
+        // Preview Selected Specs PDF - Updated with sheep emoji
+        function previewSelectedSpecsPDF(venueId) {
+            const venue = AppState.venues.find(v => v.id === venueId);
+            const selectedCocktails = venue.cocktails.filter(c => AppState.selectedCocktailsForPrint.includes(c.id));
+            
+            if (selectedCocktails.length === 0) {
+                showToast('⚠️ Please select at least one cocktail to preview');
+                return;
+            }
+            
+            let previewHTML = '';
+            
+            selectedCocktails.forEach(cocktail => {
+                previewHTML += `
+                    <div class="pdf-spec-card">
+                        <div class="pdf-spec-header">
+                            <div>
+                                <div class="pdf-spec-name">${cocktail.name}</div>
+                                <div class="pdf-spec-family">${venue.name} • ${cocktail.family || 'Signature'}</div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-bottom: 1rem;">
+                            <div style="font-weight: 600; color: #2C3E50; margin-bottom: 0.5rem;">RECIPE</div>
+                            <ul style="list-style: none; padding: 0; margin: 0;">
+                                ${cocktail.recipe.map(item => `<li style="padding: 0.25rem 0; font-size: 0.875rem; color: #34495E;">• ${item.amount}${item.unit} ${item.ingredient}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div><span style="font-weight: 600;">Glassware:</span> ${cocktail.glassware}</div>
+                            <div><span style="font-weight: 600;">Garnish:</span> ${cocktail.garnish}</div>
+                        </div>
+                        
+                        <div>
+                            <div style="font-weight: 600; color: #2C3E50; margin-bottom: 0.25rem;">METHOD</div>
+                            <p style="color: #34495E; font-size: 0.875rem; line-height: 1.5;">${cocktail.method}</p>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            AppState.pdfPreviewData = { venue, cocktails: selectedCocktails, type: 'selected-specs' };
+            AppState.pdfPreviewType = 'selected-specs';
+            
+            document.getElementById('pdfPreviewTitle').innerHTML = '<i class="fas fa-file-pdf"></i> Selected Cocktail Specs Preview';
+            document.getElementById('pdfPreviewContent').innerHTML = previewHTML;
+            document.getElementById('pdfPreviewModal').style.display = 'flex';
+        }
+
+        // Close PDF Preview
+        function closePDFPreview() {
+            document.getElementById('pdfPreviewModal').style.display = 'none';
+            AppState.pdfPreviewData = null;
+            AppState.pdfPreviewType = null;
+        }
+
+        // Download PDF from Preview
+        async function downloadPDFFromPreview() {
+            if (!AppState.pdfPreviewData) return;
+            
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF({
+                orientation: 'portrait',
+                unit: 'mm',
+                format: 'a4'
+            });
+
+            if (AppState.pdfPreviewType === 'menu') {
+                await generateMenuPDF(pdf, AppState.pdfPreviewData.venue, AppState.pdfPreviewData.cocktails);
+            } else {
+                await generateSpecsPDF(pdf, AppState.pdfPreviewData.venue, AppState.pdfPreviewData.cocktails);
+            }
+            
+            closePDFPreview();
+        }
+
+        // Share PDF from Preview
+        async function sharePDFFromPreview() {
+            if (!AppState.pdfPreviewData) return;
+            
+            const { jsPDF } = window.jspdf;
+            const pdf = new jsPDF({
+                orientation: 'portrait',
+                unit: 'mm',
+                format: 'a4'
+            });
+
+            if (AppState.pdfPreviewType === 'menu') {
+                await generateMenuPDF(pdf, AppState.pdfPreviewData.venue, AppState.pdfPreviewData.cocktails);
+            } else {
+                await generateSpecsPDF(pdf, AppState.pdfPreviewData.venue, AppState.pdfPreviewData.cocktails);
+            }
+            
+            const pdfBlob = pdf.output('blob');
+            const pdfUrl = URL.createObjectURL(pdfBlob);
+            
+            if (navigator.share) {
+                try {
+                    await navigator.share({
+                        title: `${AppState.pdfPreviewData.venue.name} - Cocktail ${AppState.pdfPreviewType === 'menu' ? 'Menu' : 'Specs'}`,
+                        files: [new File([pdfBlob], `${AppState.pdfPreviewData.venue.name}_${AppState.pdfPreviewType}.pdf`, { type: 'application/pdf' })]
+                    });
+                    showToast('✅ PDF shared successfully');
+                } catch (error) {
+                    window.open(pdfUrl, '_blank');
+                }
+            } else {
+                window.open(pdfUrl, '_blank');
+            }
+            
+            closePDFPreview();
+        }
+
+        // Generate Menu PDF - Updated with sheep emoji
+        async function generateMenuPDF(pdf, venue, cocktails) {
+            let yOffset = 20;
+            const pageHeight = pdf.internal.pageSize.height;
+            const margin = 20;
+
+            pdf.setFillColor(0, 0, 0);
+            pdf.circle(30, yOffset, 8, 'F');
+            pdf.setTextColor(230, 126, 34);
+            pdf.setFontSize(24);
+            pdf.setFont('helvetica', 'bold');
+            pdf.text('🐑 BLACK SHEEP', 45, yOffset + 5);
+            pdf.setTextColor(44, 62, 80);
+            pdf.setFontSize(16);
+            pdf.text(venue.name, 45, yOffset + 15);
+            
+            yOffset += 25;
+            
+            pdf.setDrawColor(230, 126, 34);
+            pdf.setLineWidth(0.5);
+            pdf.line(margin, yOffset, pdf.internal.pageSize.width - margin, yOffset);
+            
+            yOffset += 15;
+
+            pdf.setFillColor(236, 240, 241);
+            pdf.rect(margin, yOffset - 4, pdf.internal.pageSize.width - 40, 10, 'F');
+            pdf.setTextColor(44, 62, 80);
+            pdf.setFontSize(10);
+            pdf.setFont('helvetica', 'bold');
+            pdf.text('Cocktail Name', margin + 2, yOffset);
+            pdf.text('Family', margin + 60, yOffset);
+            pdf.text('ABV', margin + 100, yOffset);
+            pdf.text('Cost', margin + 130, yOffset);
+            pdf.text('Selling', margin + 155, yOffset);
+            pdf.text('COGS', margin + 180, yOffset);
+            
+            yOffset += 10;
+
+            cocktails.forEach((cocktail, index) => {
+                if (yOffset > pageHeight - 20) {
+                    pdf.addPage();
+                    yOffset = 20;
+                }
+
+                pdf.setTextColor(52, 73, 94);
+                pdf.setFont('helvetica', 'normal');
+                pdf.text(cocktail.name, margin + 2, yOffset);
+                pdf.text(cocktail.family || 'Signature', margin + 60, yOffset);
+                pdf.text(`${cocktail.finalAbv.toFixed(1)}%`, margin + 100, yOffset);
+                pdf.text(`$${cocktail.pourCost.toFixed(2)}`, margin + 130, yOffset);
+                pdf.text(`$${cocktail.sellingPrice}`, margin + 155, yOffset);
+                
+                pdf.setTextColor(cocktail.cogs < 25 ? 39 : cocktail.cogs < 35 ? 243 : 231, 
+                               cocktail.cogs < 25 ? 174 : cocktail.cogs < 35 ? 156 : 76, 
+                               cocktail.cogs < 25 ? 96 : cocktail.cogs < 35 ? 18 : 60);
+                pdf.setFont('helvetica', 'bold');
+                pdf.text(`${cocktail.cogs}%`, margin + 180, yOffset);
+                
+                yOffset += 8;
+            });
+
+            pdf.save(`${venue.name}_Menu_Overview.pdf`);
+            showToast(`✅ Menu PDF generated`);
+        }
+
+        // Generate Specs PDF - Updated with sheep emoji
+        async function generateSpecsPDF(pdf, venue, cocktails) {
+            let yOffset = 20;
+            const pageHeight = pdf.internal.pageSize.height;
+            const margin = 20;
+
+            pdf.setFillColor(0, 0, 0);
+            pdf.circle(30, yOffset, 8, 'F');
+            pdf.setTextColor(230, 126, 34);
+            pdf.setFontSize(24);
+            pdf.setFont('helvetica', 'bold');
+            pdf.text('🐑 BLACK SHEEP', 45, yOffset + 5);
+            pdf.setTextColor(44, 62, 80);
+            pdf.setFontSize(16);
+            pdf.text('COCKTAIL SPECS', 45, yOffset + 15);
+            
+            yOffset += 25;
+            
+            pdf.setDrawColor(230, 126, 34);
+            pdf.setLineWidth(0.5);
+            pdf.line(margin, yOffset, pdf.internal.pageSize.width - margin, yOffset);
+            
+            yOffset += 15;
+
+            for (let i = 0; i < cocktails.length; i++) {
+                const cocktail = cocktails[i];
+                
+                if (yOffset > pageHeight - 60) {
+                    pdf.addPage();
+                    yOffset = 20;
+                }
+
+                pdf.setTextColor(230, 126, 34);
+                pdf.setFontSize(18);
+                pdf.setFont('helvetica', 'bold');
+                pdf.text(cocktail.name, margin, yOffset);
+                
+                yOffset += 8;
+                
+                pdf.setTextColor(149, 165, 166);
+                pdf.setFontSize(11);
+                pdf.setFont('helvetica', 'normal');
+                pdf.text(`${venue.name} • ${cocktail.family || 'Signature'}`, margin, yOffset);
+                
+                yOffset += 12;
+
+                pdf.setTextColor(44, 62, 80);
+                pdf.setFontSize(12);
+                pdf.setFont('helvetica', 'bold');
+                pdf.text('RECIPE', margin, yOffset);
+                
+                yOffset += 6;
+                
+                cocktail.recipe.forEach((item) => {
+                    pdf.setTextColor(52, 73, 94);
+                    pdf.setFontSize(10);
+                    pdf.setFont('helvetica', 'normal');
+                    pdf.text(`• ${item.amount}${item.unit} ${item.ingredient}`, margin + 5, yOffset);
+                    yOffset += 5;
+                });
+                
+                yOffset += 5;
+
+                pdf.setTextColor(44, 62, 80);
+                pdf.setFontSize(11);
+                pdf.setFont('helvetica', 'bold');
+                pdf.text('GLASSWARE:', margin, yOffset);
+                pdf.setTextColor(52, 73, 94);
+                pdf.setFont('helvetica', 'normal');
+                pdf.text(` ${cocktail.glassware}`, margin + 35, yOffset);
+                
+                yOffset += 6;
+                
+                pdf.setTextColor(44, 62, 80);
+                pdf.setFont('helvetica', 'bold');
+                pdf.text('GARNISH:', margin, yOffset);
+                pdf.setTextColor(52, 73, 94);
+                pdf.setFont('helvetica', 'normal');
+                pdf.text(` ${cocktail.garnish}`, margin + 35, yOffset);
+                
+                yOffset += 8;
+
+                pdf.setTextColor(44, 62, 80);
+                pdf.setFontSize(12);
+                pdf.setFont('helvetica', 'bold');
+                pdf.text('METHOD', margin, yOffset);
+                
+                yOffset += 6;
+                
+                const methodLines = pdf.splitTextToSize(cocktail.method, pdf.internal.pageSize.width - 40);
+                pdf.setTextColor(52, 73, 94);
+                pdf.setFontSize(10);
+                pdf.setFont('helvetica', 'normal');
+                pdf.text(methodLines, margin + 5, yOffset);
+                
+                yOffset += methodLines.length * 5 + 15;
+            }
+
+            pdf.save(`${venue.name}_Cocktail_Specs.pdf`);
+            showToast(`✅ Specs PDF generated for ${cocktails.length} cocktails`);
         }
 
         // Initialize

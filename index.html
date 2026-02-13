@@ -7,7 +7,7 @@
 <!-- Optional: Prevents zooming when launching from home screen -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
     <title>Black Sheep Restaurants - Beverage Database</title>
@@ -171,16 +171,8 @@
             color: var(--sheep-black);
         }
 
-        .sheep-logo {
-            width: 40px;
-            height: 40px;
-            background: var(--sheep-black);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
+        .logo span {
+            font-size: 2rem;
         }
 
         .restaurant-badge {
@@ -480,6 +472,8 @@
             background: var(--light);
             padding: 0.5rem 1rem;
             border-radius: 30px;
+            flex: 1;
+            min-width: 250px;
         }
 
         .filter-group i {
@@ -491,15 +485,7 @@
             background: transparent;
             padding: 0.5rem;
             outline: none;
-            width: 200px;
-        }
-
-        .filter-select {
-            border: none;
-            background: transparent;
-            padding: 0.5rem;
-            outline: none;
-            color: var(--dark);
+            width: 100%;
         }
 
         .spirit-table {
@@ -559,19 +545,29 @@
             background: #c0392b;
         }
 
-        .update-abv-btn {
-            background: var(--accent);
-            color: white;
-            border: none;
-            padding: 0.25rem 0.75rem;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
+        .abv-spirit {
+            color: var(--success);
+            font-weight: 600;
         }
 
-        .update-abv-btn:hover {
-            background: var(--accent-light);
+        .abv-liqueur {
+            color: #e67e22;
+            font-weight: 600;
+        }
+
+        .abv-bitters {
+            color: #9b59b6;
+            font-weight: 600;
+        }
+
+        .abv-wine {
+            color: #3498db;
+            font-weight: 600;
+        }
+
+        .abv-non {
+            color: var(--gray);
+            font-weight: 400;
         }
 
         /* Spirit Edit Modal */
@@ -991,6 +987,25 @@
         .cogs-high {
             color: var(--danger);
             font-weight: 600;
+        }
+
+        .editable-price {
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .editable-price:hover {
+            background-color: var(--accent-soft);
+        }
+
+        .price-input {
+            width: 80px;
+            padding: 0.25rem;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            font-size: 0.875rem;
         }
 
         /* PDF Preview Modal */
@@ -1554,6 +1569,15 @@
             font-size: 0.75rem;
         }
 
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #219a52;
+        }
+
         /* Wide form inputs */
         .wide-textarea {
             width: 100%;
@@ -1719,9 +1743,8 @@
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <div class="logo">
-                    <div class="sheep-logo">
-                        <i class="fas fa-sheep"></i>
-                    </div>
+                    <span>🐑</span>
+                    <span>BLACK SHEEP</span>
                 </div>
                 <div class="restaurant-badge">
                     <i class="fas fa-star"></i> Black Sheep Restaurants
@@ -1786,43 +1809,29 @@
                 <input type="hidden" id="editSpiritId">
                 <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
                     <div class="form-group">
-                        <label style="font-weight: 600; color: var(--primary);">Name</label>
+                        <label style="font-weight: 600; color: var(--primary);">Category</label>
+                        <input type="text" id="editSpiritType" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label style="font-weight: 600; color: var(--primary);">Product</label>
                         <input type="text" id="editSpiritName" class="form-input" required>
                     </div>
                     <div class="form-group">
-                        <label style="font-weight: 600; color: var(--primary);">Brand</label>
-                        <input type="text" id="editSpiritBrand" class="form-input" required>
+                        <label style="font-weight: 600; color: var(--primary);">Size (ml)</label>
+                        <input type="number" id="editSpiritBottleSize" class="form-input" step="0.1" min="0" required>
                     </div>
                     <div class="form-group">
-                        <label style="font-weight: 600; color: var(--primary);">Type</label>
-                        <input type="text" id="editSpiritType" class="form-input" required>
+                        <label style="font-weight: 600; color: var(--primary);">Cost ($)</label>
+                        <input type="number" id="editSpiritBottleCost" class="form-input" step="0.01" min="0" required>
                     </div>
                     <div class="form-group">
                         <label style="font-weight: 600; color: var(--primary);">ABV (%)</label>
                         <input type="number" id="editSpiritABV" class="form-input" step="0.1" min="0" max="100" required>
                     </div>
                     <div class="form-group">
-                        <label style="font-weight: 600; color: var(--primary);">Bottle Size (ml)</label>
-                        <input type="number" id="editSpiritBottleSize" class="form-input" step="0.1" min="0" required>
-                    </div>
-                    <div class="form-group">
-                        <label style="font-weight: 600; color: var(--primary);">Bottle Cost ($)</label>
-                        <input type="number" id="editSpiritBottleCost" class="form-input" step="0.01" min="0" required>
-                    </div>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
-                    <div class="form-group">
                         <label style="font-weight: 600; color: var(--primary);">Supplier</label>
                         <input type="text" id="editSpiritSupplier" class="form-input">
                     </div>
-                    <div class="form-group">
-                        <label style="font-weight: 600; color: var(--primary);">Last Updated</label>
-                        <input type="text" id="editSpiritLastUpdated" class="form-input" readonly style="background: var(--light);">
-                    </div>
-                </div>
-                <div class="form-group" style="margin-bottom: 1.5rem;">
-                    <label style="font-weight: 600; color: var(--primary);">Notes</label>
-                    <textarea id="editSpiritNotes" class="wide-textarea" rows="3"></textarea>
                 </div>
                 <div style="display: flex; gap: 1rem; justify-content: flex-end;">
                     <button type="button" class="btn btn-outline" onclick="closeSpiritEditModal()">Cancel</button>
@@ -2358,10 +2367,14 @@
                 }
             ],
             spiritLibrary: [
-                { id: "spirit-001", name: "House Bourbon", brand: "Wild Turkey 101", type: "Bourbon", abv: 50, bottleSize: 750, bottleCost: 45, notes: "High rye bourbon", supplier: "Wild Turkey", lastUpdated: "2024-01-15" },
-                { id: "spirit-002", name: "Blended Scotch", brand: "Monkey Shoulder", type: "Scotch", abv: 40, bottleSize: 750, bottleCost: 38, notes: "Smooth blended malt", supplier: "William Grant & Sons", lastUpdated: "2024-01-15" },
-                { id: "spirit-003", name: "Islay Scotch", brand: "Laphroaig 10", type: "Scotch", abv: 46, bottleSize: 750, bottleCost: 65, notes: "Peaty and smoky", supplier: "Beam Suntory", lastUpdated: "2024-01-15" },
-                { id: "spirit-004", name: "House Gin", brand: "Beefeater", type: "Gin", abv: 47, bottleSize: 700, bottleCost: 32, notes: "London dry gin", supplier: "Pernod Ricard", lastUpdated: "2024-01-15" }
+                { id: "spirit-001", name: "Wild Turkey 101", type: "Bourbon", abv: 50.5, bottleSize: 750, bottleCost: 45, supplier: "Wild Turkey", lastUpdated: "2024-01-15" },
+                { id: "spirit-002", name: "Monkey Shoulder", type: "Blended Scotch", abv: 40, bottleSize: 750, bottleCost: 38, supplier: "William Grant & Sons", lastUpdated: "2024-01-15" },
+                { id: "spirit-003", name: "Laphroaig 10", type: "Islay Scotch", abv: 46, bottleSize: 750, bottleCost: 65, supplier: "Beam Suntory", lastUpdated: "2024-01-15" },
+                { id: "spirit-004", name: "Beefeater", type: "London Dry Gin", abv: 47, bottleSize: 700, bottleCost: 32, supplier: "Pernod Ricard", lastUpdated: "2024-01-15" },
+                { id: "spirit-005", name: "Campari", type: "Bitter Liqueur", abv: 24, bottleSize: 1000, bottleCost: 38, supplier: "Campari Group", lastUpdated: "2024-01-15" },
+                { id: "spirit-006", name: "Angostura Bitters", type: "Aromatic Bitters", abv: 44.7, bottleSize: 200, bottleCost: 30, supplier: "Angostura", lastUpdated: "2024-01-15" },
+                { id: "spirit-007", name: "Simple Syrup", type: "Syrup", abv: 0, bottleSize: 1000, bottleCost: 12, supplier: "House Made", lastUpdated: "2024-01-15" },
+                { id: "spirit-008", name: "Carpano Antica", type: "Sweet Vermouth", abv: 16.5, bottleSize: 750, bottleCost: 28, supplier: "Carpano", lastUpdated: "2024-01-15" }
             ],
             infusions: [],
             distillations: [],
@@ -2580,11 +2593,11 @@
             });
 
             AppState.spiritLibrary.forEach(spirit => {
-                if (spirit.name.toLowerCase().includes(searchTerm) || spirit.brand.toLowerCase().includes(searchTerm)) {
+                if (spirit.name.toLowerCase().includes(searchTerm) || spirit.type.toLowerCase().includes(searchTerm)) {
                     results.push({
                         type: 'Spirit',
                         name: spirit.name,
-                        brand: spirit.brand,
+                        brand: spirit.type,
                         action: () => {
                             AppState.currentPage = 'spirit-library';
                             renderSpiritLibrary();
@@ -2776,7 +2789,7 @@
                         </thead>
                         <tbody>
                             ${sortedCocktails.map(cocktail => {
-                                const cogsClass = cocktail.cogs < 25 ? 'cogs-good' : cocktail.cogs < 35 ? 'cogs-warning' : 'cogs-high';
+                                const cogsClass = cocktail.cogs < 20 ? 'cogs-good' : cocktail.cogs < 25 ? 'cogs-warning' : 'cogs-high';
                                 const isSelected = AppState.selectedCocktailsForPrint.includes(cocktail.id);
                                 return `
                                     <tr class="${isSelected ? 'selected' : ''}" data-cocktail-id="${cocktail.id}" onclick="toggleCocktailSelection(${venueId}, ${cocktail.id}, event)">
@@ -2789,7 +2802,11 @@
                                         <td>${cocktail.recipe.map(r => `${r.amount}${r.unit} ${r.ingredient}`).join(', ')}</td>
                                         <td>${cocktail.finalAbv.toFixed(1)}%</td>
                                         <td>$${cocktail.pourCost.toFixed(2)}</td>
-                                        <td>$${cocktail.sellingPrice}</td>
+                                        <td>
+                                            <span class="editable-price" onclick="event.stopPropagation(); editSellingPrice(${venueId}, ${cocktail.id}, this)">
+                                                $${cocktail.sellingPrice}
+                                            </span>
+                                        </td>
                                         <td class="${cogsClass}">${cocktail.cogs}%</td>
                                         <td>${cocktail.glassware}</td>
                                         <td>${cocktail.garnish}</td>
@@ -2809,6 +2826,47 @@
             `;
             
             updateSelectedCount();
+        }
+
+        // Edit Selling Price in Overview
+        function editSellingPrice(venueId, cocktailId, element) {
+            const venue = AppState.venues.find(v => v.id === venueId);
+            const cocktail = venue?.cocktails.find(c => c.id === cocktailId);
+            if (!cocktail) return;
+            
+            const currentPrice = cocktail.sellingPrice;
+            const input = document.createElement('input');
+            input.type = 'number';
+            input.value = currentPrice;
+            input.className = 'price-input';
+            input.step = '0.01';
+            input.min = '0';
+            
+            input.onclick = (e) => e.stopPropagation();
+            
+            input.onblur = () => {
+                const newPrice = parseFloat(input.value);
+                if (!isNaN(newPrice) && newPrice >= 0 && newPrice !== currentPrice) {
+                    cocktail.sellingPrice = newPrice;
+                    cocktail.cogs = ((cocktail.pourCost / newPrice) * 100).toFixed(1);
+                    viewCocktailOverview(venueId);
+                    showToast(`✅ Updated ${cocktail.name} price to $${newPrice.toFixed(2)}`);
+                } else {
+                    element.innerHTML = `$${currentPrice}`;
+                    element.style.display = 'inline';
+                }
+            };
+            
+            input.onkeypress = (e) => {
+                if (e.key === 'Enter') {
+                    input.blur();
+                }
+            };
+            
+            element.style.display = 'none';
+            element.parentNode.insertBefore(input, element.nextSibling);
+            input.focus();
+            input.select();
         }
 
         // Selection Functions
@@ -2924,7 +2982,7 @@
                                     <td>${cocktail.finalAbv.toFixed(1)}%</td>
                                     <td>$${cocktail.pourCost.toFixed(2)}</td>
                                     <td>$${cocktail.sellingPrice}</td>
-                                    <td style="color: ${cocktail.cogs < 25 ? 'var(--success)' : cocktail.cogs < 35 ? '#F39C12' : 'var(--danger)'}; font-weight: 600;">
+                                    <td style="color: ${cocktail.cogs < 20 ? 'var(--success)' : cocktail.cogs < 25 ? '#F39C12' : 'var(--danger)'}; font-weight: 600;">
                                         ${cocktail.cogs}%
                                     </td>
                                 </tr>
@@ -3139,9 +3197,9 @@
                 pdf.text(`$${cocktail.pourCost.toFixed(2)}`, margin + 130, yOffset);
                 pdf.text(`$${cocktail.sellingPrice}`, margin + 155, yOffset);
                 
-                pdf.setTextColor(cocktail.cogs < 25 ? 39 : cocktail.cogs < 35 ? 243 : 231, 
-                               cocktail.cogs < 25 ? 174 : cocktail.cogs < 35 ? 156 : 76, 
-                               cocktail.cogs < 25 ? 96 : cocktail.cogs < 35 ? 18 : 60);
+                pdf.setTextColor(cocktail.cogs < 20 ? 39 : cocktail.cogs < 25 ? 243 : 231, 
+                               cocktail.cogs < 20 ? 174 : cocktail.cogs < 25 ? 156 : 76, 
+                               cocktail.cogs < 20 ? 96 : cocktail.cogs < 25 ? 18 : 60);
                 pdf.setFont('helvetica', 'bold');
                 pdf.text(`${cocktail.cogs}%`, margin + 180, yOffset);
                 
@@ -3517,7 +3575,7 @@
                             </div>
                             <div class="info-item">
                                 <span class="info-item-label">COGS</span>
-                                <span class="info-item-value" style="color: ${cocktail.cogs < 25 ? 'var(--success)' : cocktail.cogs < 35 ? '#F39C12' : 'var(--danger)'};">
+                                <span class="info-item-value" style="color: ${cocktail.cogs < 20 ? 'var(--success)' : cocktail.cogs < 25 ? '#F39C12' : 'var(--danger)'};">
                                     ${cocktail.cogs}%
                                 </span>
                             </div>
@@ -3944,7 +4002,7 @@
                             </div>
                             <div class="info-item">
                                 <span class="info-item-label">COGS</span>
-                                <span class="info-item-value" style="color: ${cocktail.cogs < 25 ? 'var(--success)' : cocktail.cogs < 35 ? '#F39C12' : 'var(--danger)'};">
+                                <span class="info-item-value" style="color: ${cocktail.cogs < 20 ? 'var(--success)' : cocktail.cogs < 25 ? '#F39C12' : 'var(--danger)'};">
                                     ${cocktail.cogs}%
                                 </span>
                             </div>
@@ -4690,7 +4748,7 @@
             }
         }
 
-        // SPIRIT LIBRARY - FIXED Excel Import
+        // SPIRIT LIBRARY - Updated with simplified fields and no ABV refresh buttons
         function renderSpiritLibrary() {
             const spirits = AppState.spiritLibrary;
             
@@ -4723,14 +4781,7 @@
                     <div class="spirit-filters">
                         <div class="filter-group">
                             <i class="fas fa-search"></i>
-                            <input type="text" id="spiritSearch" class="filter-input" placeholder="Search by name, brand, type..." onkeyup="filterSpiritLibrary()">
-                        </div>
-                        <div class="filter-group">
-                            <i class="fas fa-filter"></i>
-                            <select id="spiritTypeFilter" class="filter-select" onchange="filterSpiritLibrary()">
-                                <option value="">All Types</option>
-                                ${[...new Set(spirits.map(s => s.type))].map(type => `<option value="${type}">${type}</option>`).join('')}
-                            </select>
+                            <input type="text" id="spiritSearch" class="filter-input" placeholder="Search by Category, Product, Size, Cost, ABV, Supplier..." onkeyup="filterSpiritLibrary()">
                         </div>
                     </div>
 
@@ -4742,45 +4793,53 @@
                     <table class="spirit-table" id="spiritTable">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Brand</th>
-                                <th>Type</th>
-                                <th>ABV</th>
-                                <th>Bottle Size</th>
-                                <th>Bottle Cost</th>
-                                <th>Cost per ml</th>
+                                <th>Category</th>
+                                <th>Product</th>
+                                <th>Size (ml)</th>
+                                <th>Cost ($)</th>
+                                <th>ABV (%)</th>
                                 <th>Supplier</th>
-                                <th>Last Updated</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="spiritTableBody">
-                            ${spirits.map(spirit => `
-                                <tr data-spirit-id="${spirit.id}">
-                                    <td style="font-weight: 600;">${spirit.name}</td>
-                                    <td>${spirit.brand}</td>
-                                    <td>${spirit.type}</td>
-                                    <td>${spirit.abv}%</td>
-                                    <td>${spirit.bottleSize}ml</td>
-                                    <td>$${spirit.bottleCost.toFixed(2)}</td>
-                                    <td>$${(spirit.bottleCost / spirit.bottleSize).toFixed(3)}</td>
-                                    <td>${spirit.supplier || '-'}</td>
-                                    <td>${spirit.lastUpdated || '2024-01-15'}</td>
-                                    <td>
-                                        <div class="spirit-actions">
-                                            <button class="spirit-edit-btn" onclick="openSpiritEditModal('${spirit.id}')">
-                                                <i class="fas fa-edit"></i> Edit
-                                            </button>
-                                            <button class="update-abv-btn" onclick="updateSpiritABV('${spirit.id}')">
-                                                <i class="fas fa-sync-alt"></i> ABV
-                                            </button>
-                                            <button class="spirit-delete-btn" onclick="deleteSpirit('${spirit.id}')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            `).join('')}
+                            ${spirits.map(spirit => {
+                                // Determine ABV class for color coding
+                                let abvClass = 'abv-non';
+                                const type = spirit.type.toLowerCase();
+                                if (type.includes('gin') || type.includes('vodka') || type.includes('whiskey') || 
+                                    type.includes('bourbon') || type.includes('scotch') || type.includes('rum') || 
+                                    type.includes('tequila') || type.includes('brandy')) {
+                                    abvClass = 'abv-spirit';
+                                } else if (type.includes('liqueur')) {
+                                    abvClass = 'abv-liqueur';
+                                } else if (type.includes('bitters')) {
+                                    abvClass = 'abv-bitters';
+                                } else if (type.includes('vermouth') || type.includes('wine')) {
+                                    abvClass = 'abv-wine';
+                                }
+                                
+                                return `
+                                    <tr data-spirit-id="${spirit.id}">
+                                        <td>${spirit.type}</td>
+                                        <td style="font-weight: 600;">${spirit.name}</td>
+                                        <td>${spirit.bottleSize}ml</td>
+                                        <td>$${spirit.bottleCost.toFixed(2)}</td>
+                                        <td class="${abvClass}">${spirit.abv.toFixed(1)}%</td>
+                                        <td>${spirit.supplier || '-'}</td>
+                                        <td>
+                                            <div class="spirit-actions">
+                                                <button class="spirit-edit-btn" onclick="openSpiritEditModal('${spirit.id}')">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </button>
+                                                <button class="spirit-delete-btn" onclick="deleteSpirit('${spirit.id}')">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                `;
+                            }).join('')}
                         </tbody>
                     </table>
                 </div>
@@ -4790,46 +4849,56 @@
         // Filter Spirit Library
         function filterSpiritLibrary() {
             const searchTerm = document.getElementById('spiritSearch')?.value.toLowerCase() || '';
-            const typeFilter = document.getElementById('spiritTypeFilter')?.value || '';
             
             const filtered = AppState.spiritLibrary.filter(spirit => {
-                const matchesSearch = !searchTerm || 
+                return !searchTerm || 
                     spirit.name.toLowerCase().includes(searchTerm) ||
-                    spirit.brand.toLowerCase().includes(searchTerm) ||
                     spirit.type.toLowerCase().includes(searchTerm) ||
+                    spirit.bottleSize.toString().includes(searchTerm) ||
+                    spirit.bottleCost.toString().includes(searchTerm) ||
+                    spirit.abv.toString().includes(searchTerm) ||
                     (spirit.supplier && spirit.supplier.toLowerCase().includes(searchTerm));
-                const matchesType = !typeFilter || spirit.type === typeFilter;
-                return matchesSearch && matchesType;
             });
             
             const tbody = document.getElementById('spiritTableBody');
             if (tbody) {
-                tbody.innerHTML = filtered.map(spirit => `
-                    <tr data-spirit-id="${spirit.id}">
-                        <td style="font-weight: 600;">${spirit.name}</td>
-                        <td>${spirit.brand}</td>
-                        <td>${spirit.type}</td>
-                        <td>${spirit.abv}%</td>
-                        <td>${spirit.bottleSize}ml</td>
-                        <td>$${spirit.bottleCost.toFixed(2)}</td>
-                        <td>$${(spirit.bottleCost / spirit.bottleSize).toFixed(3)}</td>
-                        <td>${spirit.supplier || '-'}</td>
-                        <td>${spirit.lastUpdated || '2024-01-15'}</td>
-                        <td>
-                            <div class="spirit-actions">
-                                <button class="spirit-edit-btn" onclick="openSpiritEditModal('${spirit.id}')">
-                                    <i class="fas fa-edit"></i> Edit
-                                </button>
-                                <button class="update-abv-btn" onclick="updateSpiritABV('${spirit.id}')">
-                                    <i class="fas fa-sync-alt"></i> ABV
-                                </button>
-                                <button class="spirit-delete-btn" onclick="deleteSpirit('${spirit.id}')">
-                                    <i class="fas fa-trash"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                `).join('');
+                tbody.innerHTML = filtered.map(spirit => {
+                    // Determine ABV class for color coding
+                    let abvClass = 'abv-non';
+                    const type = spirit.type.toLowerCase();
+                    if (type.includes('gin') || type.includes('vodka') || type.includes('whiskey') || 
+                        type.includes('bourbon') || type.includes('scotch') || type.includes('rum') || 
+                        type.includes('tequila') || type.includes('brandy')) {
+                        abvClass = 'abv-spirit';
+                    } else if (type.includes('liqueur')) {
+                        abvClass = 'abv-liqueur';
+                    } else if (type.includes('bitters')) {
+                        abvClass = 'abv-bitters';
+                    } else if (type.includes('vermouth') || type.includes('wine')) {
+                        abvClass = 'abv-wine';
+                    }
+                    
+                    return `
+                        <tr data-spirit-id="${spirit.id}">
+                            <td>${spirit.type}</td>
+                            <td style="font-weight: 600;">${spirit.name}</td>
+                            <td>${spirit.bottleSize}ml</td>
+                            <td>$${spirit.bottleCost.toFixed(2)}</td>
+                            <td class="${abvClass}">${spirit.abv.toFixed(1)}%</td>
+                            <td>${spirit.supplier || '-'}</td>
+                            <td>
+                                <div class="spirit-actions">
+                                    <button class="spirit-edit-btn" onclick="openSpiritEditModal('${spirit.id}')">
+                                        <i class="fas fa-edit"></i> Edit
+                                    </button>
+                                    <button class="spirit-delete-btn" onclick="deleteSpirit('${spirit.id}')">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                }).join('');
                 document.getElementById('spiritCount').textContent = `${filtered.length} items`;
             }
         }
@@ -4866,7 +4935,7 @@
                     showToast('🔍 Analyzing Excel structure...');
 
                     let headerRow = -1;
-                    const possibleHeaders = ['name', 'spirit', 'brand', 'type', 'abv', 'bottle', 'cost', 'price', 'supplier'];
+                    const possibleHeaders = ['category', 'product', 'size', 'cost', 'abv', 'supplier'];
                     
                     for (let i = 0; i < Math.min(jsonData.length, 20); i++) {
                         const row = jsonData[i];
@@ -4889,14 +4958,12 @@
 
                     const headers = jsonData[headerRow].map(h => String(h || '').toLowerCase().trim());
                     
-                    const nameIdx = headers.findIndex(h => h.includes('name') || h.includes('spirit') || h.includes('product'));
-                    const brandIdx = headers.findIndex(h => h.includes('brand') || h.includes('maker'));
-                    const typeIdx = headers.findIndex(h => h.includes('type') || h.includes('category') || h.includes('style'));
-                    const abvIdx = headers.findIndex(h => h.includes('abv') || h.includes('alcohol') || h.includes('proof'));
-                    const sizeIdx = headers.findIndex(h => h.includes('bottle') || h.includes('volume') || h.includes('ml') || h.includes('size'));
-                    const costIdx = headers.findIndex(h => h.includes('cost') || h.includes('price') || h.includes('value'));
-                    const supplierIdx = headers.findIndex(h => h.includes('supplier') || h.includes('vendor') || h.includes('distributor'));
-                    const notesIdx = headers.findIndex(h => h.includes('note') || h.includes('comment') || h.includes('description'));
+                    const categoryIdx = headers.findIndex(h => h.includes('category') || h.includes('type') || h.includes('spirit'));
+                    const productIdx = headers.findIndex(h => h.includes('product') || h.includes('name'));
+                    const sizeIdx = headers.findIndex(h => h.includes('size') || h.includes('volume') || h.includes('ml'));
+                    const costIdx = headers.findIndex(h => h.includes('cost') || h.includes('price'));
+                    const abvIdx = headers.findIndex(h => h.includes('abv') || h.includes('alcohol'));
+                    const supplierIdx = headers.findIndex(h => h.includes('supplier') || h.includes('vendor'));
 
                     showToast(`📊 Found ${headers.length} columns`);
 
@@ -4908,21 +4975,17 @@
                         if (!row || !Array.isArray(row) || row.length === 0) continue;
                         if (row.every(cell => !cell || cell === '')) continue;
                         
-                        let name = '';
-                        if (nameIdx >= 0 && row[nameIdx]) {
-                            name = String(row[nameIdx]).trim();
+                        let category = '';
+                        if (categoryIdx >= 0 && row[categoryIdx]) {
+                            category = String(row[categoryIdx]).trim();
                         }
                         
-                        if (!name) {
-                            for (let j = 0; j < Math.min(row.length, 3); j++) {
-                                if (row[j] && String(row[j]).trim()) {
-                                    name = String(row[j]).trim();
-                                    break;
-                                }
-                            }
+                        let product = '';
+                        if (productIdx >= 0 && row[productIdx]) {
+                            product = String(row[productIdx]).trim();
                         }
                         
-                        if (!name) continue;
+                        if (!product) continue;
 
                         const parseFloatSafe = (val) => {
                             if (val === undefined || val === null || val === '') return null;
@@ -4931,27 +4994,25 @@
                             return isNaN(num) ? null : num;
                         };
 
-                        const abv = parseFloatSafe(abvIdx >= 0 ? row[abvIdx] : null) || 40;
-                        const bottleSize = parseFloatSafe(sizeIdx >= 0 ? row[sizeIdx] : null) || 750;
-                        const bottleCost = parseFloatSafe(costIdx >= 0 ? row[costIdx] : null) || 0;
+                        const size = parseFloatSafe(sizeIdx >= 0 ? row[sizeIdx] : null) || 750;
+                        const cost = parseFloatSafe(costIdx >= 0 ? row[costIdx] : null) || 0;
+                        const abv = parseFloatSafe(abvIdx >= 0 ? row[abvIdx] : null) || 0;
 
                         newSpirits.push({
                             id: `spirit-${Date.now()}-${importCount++}`,
-                            name: name,
-                            brand: (brandIdx >= 0 && row[brandIdx]) ? String(row[brandIdx]).trim() : '',
-                            type: (typeIdx >= 0 && row[typeIdx]) ? String(row[typeIdx]).trim() : 'Spirit',
+                            name: product,
+                            type: category || 'Spirit',
                             abv: abv,
-                            bottleSize: bottleSize,
-                            bottleCost: bottleCost,
+                            bottleSize: size,
+                            bottleCost: cost,
                             supplier: (supplierIdx >= 0 && row[supplierIdx]) ? String(row[supplierIdx]).trim() : '',
-                            notes: (notesIdx >= 0 && row[notesIdx]) ? String(row[notesIdx]).trim() : '',
                             lastUpdated: new Date().toISOString().split('T')[0]
                         });
                     }
 
                     if (newSpirits.length > 0) {
                         AppState.spiritLibrary = [...AppState.spiritLibrary, ...newSpirits];
-                        showToast(`✅ Successfully imported ${newSpirits.length} spirits!`);
+                        showToast(`✅ Successfully imported ${newSpirits.length} items!`);
                         renderSpiritLibrary();
                         updateAllCocktailCosts();
                     } else {
@@ -4975,16 +5036,12 @@
         // Export Spirit Library
         function exportSpiritLibrary() {
             const exportData = AppState.spiritLibrary.map(spirit => ({
-                'Name': spirit.name,
-                'Brand': spirit.brand,
-                'Type': spirit.type,
-                'ABV': spirit.abv,
-                'Bottle Size (ml)': spirit.bottleSize,
-                'Bottle Cost ($)': spirit.bottleCost,
-                'Cost per ml ($)': (spirit.bottleCost / spirit.bottleSize).toFixed(3),
-                'Supplier': spirit.supplier || '',
-                'Notes': spirit.notes || '',
-                'Last Updated': spirit.lastUpdated || ''
+                'Category': spirit.type,
+                'Product': spirit.name,
+                'Size (ml)': spirit.bottleSize,
+                'Cost ($)': spirit.bottleCost.toFixed(2),
+                'ABV (%)': spirit.abv.toFixed(1),
+                'Supplier': spirit.supplier || ''
             }));
 
             const wb = XLSX.utils.book_new();
@@ -4994,6 +5051,47 @@
             showToast('✅ Spirit library exported successfully');
         }
 
+        // Get smart ABV based on category (kept for potential future use)
+        function getSmartABV(category) {
+            const type = category.toLowerCase();
+            
+            // Spirits (35-50%)
+            if (type.includes('gin') || type.includes('vodka') || type.includes('whiskey') || 
+                type.includes('bourbon') || type.includes('scotch') || type.includes('rum') || 
+                type.includes('tequila') || type.includes('brandy') || type.includes('cognac')) {
+                return 40 + Math.floor(Math.random() * 10); // 40-50%
+            }
+            
+            // Liqueurs (15-30%)
+            if (type.includes('liqueur') || type.includes('liquor')) {
+                return 15 + Math.floor(Math.random() * 15); // 15-30%
+            }
+            
+            // Bitters (35-45%)
+            if (type.includes('bitters')) {
+                return 35 + Math.floor(Math.random() * 10); // 35-45%
+            }
+            
+            // Fortified Wines / Vermouth (15-22%)
+            if (type.includes('vermouth') || type.includes('wine') || type.includes('port') || type.includes('sherry')) {
+                return 15 + Math.floor(Math.random() * 7); // 15-22%
+            }
+            
+            // Aperitifs (15-25%)
+            if (type.includes('aperol') || type.includes('campari') || type.includes('aperitif')) {
+                return 11 + Math.floor(Math.random() * 14); // 11-25%
+            }
+            
+            // Non-alcoholic
+            if (type.includes('syrup') || type.includes('juice') || type.includes('puree') || 
+                type.includes('cordial') || type.includes('grenadine') || type.includes('orgeat')) {
+                return 0;
+            }
+            
+            // Default for unknown - assume spirit
+            return 40;
+        }
+
         // Edit Spirit
         function openSpiritEditModal(spiritId) {
             const spirit = AppState.spiritLibrary.find(s => s.id === spiritId);
@@ -5001,14 +5099,11 @@
             
             document.getElementById('editSpiritId').value = spirit.id;
             document.getElementById('editSpiritName').value = spirit.name;
-            document.getElementById('editSpiritBrand').value = spirit.brand;
             document.getElementById('editSpiritType').value = spirit.type;
             document.getElementById('editSpiritABV').value = spirit.abv;
             document.getElementById('editSpiritBottleSize').value = spirit.bottleSize;
             document.getElementById('editSpiritBottleCost').value = spirit.bottleCost;
             document.getElementById('editSpiritSupplier').value = spirit.supplier || '';
-            document.getElementById('editSpiritLastUpdated').value = new Date().toISOString().split('T')[0];
-            document.getElementById('editSpiritNotes').value = spirit.notes || '';
             
             document.getElementById('spiritEditModal').style.display = 'flex';
         }
@@ -5025,14 +5120,12 @@
             
             if (spirit) {
                 spirit.name = document.getElementById('editSpiritName').value;
-                spirit.brand = document.getElementById('editSpiritBrand').value;
                 spirit.type = document.getElementById('editSpiritType').value;
                 spirit.abv = parseFloat(document.getElementById('editSpiritABV').value);
                 spirit.bottleSize = parseFloat(document.getElementById('editSpiritBottleSize').value);
                 spirit.bottleCost = parseFloat(document.getElementById('editSpiritBottleCost').value);
                 spirit.supplier = document.getElementById('editSpiritSupplier').value;
-                spirit.lastUpdated = document.getElementById('editSpiritLastUpdated').value;
-                spirit.notes = document.getElementById('editSpiritNotes').value;
+                spirit.lastUpdated = new Date().toISOString().split('T')[0];
                 
                 closeSpiritEditModal();
                 renderSpiritLibrary();
@@ -5052,23 +5145,6 @@
                     showToast('✅ Spirit deleted');
                 }
             }
-        }
-
-        // Update Spirit ABV
-        function updateSpiritABV(spiritId) {
-            const spirit = AppState.spiritLibrary.find(s => s.id === spiritId);
-            if (!spirit) return;
-            
-            showToast(`🔍 Searching for ${spirit.name} ABV...`);
-            
-            setTimeout(() => {
-                const newABV = Math.floor(Math.random() * 15) + 40;
-                spirit.abv = newABV;
-                spirit.lastUpdated = new Date().toISOString().split('T')[0];
-                showToast(`✅ Updated ${spirit.name} ABV to ${spirit.abv}%`);
-                filterSpiritLibrary();
-                updateAllCocktailCosts();
-            }, 1000);
         }
 
         // Update all cocktail costs
@@ -5122,14 +5198,14 @@
 
             const matches = AppState.spiritLibrary.filter(spirit => 
                 spirit.name.toLowerCase().includes(searchTerm) || 
-                spirit.brand.toLowerCase().includes(searchTerm)
+                spirit.type.toLowerCase().includes(searchTerm)
             ).slice(0, 5);
 
             if (matches.length > 0) {
                 autocompleteList.innerHTML = matches.map(spirit => `
                     <div class="autocomplete-item" onclick="selectIngredient(this, '${spirit.id}', '${spirit.name}', ${spirit.bottleSize}, ${spirit.bottleCost}, ${spirit.abv})">
-                        <strong>${spirit.name}</strong> - ${spirit.brand}<br>
-                        <small>${spirit.bottleSize}ml | $${spirit.bottleCost.toFixed(2)} | ${spirit.abv}% ABV</small>
+                        <strong>${spirit.name}</strong> - ${spirit.type}<br>
+                        <small>${spirit.bottleSize}ml | $${spirit.bottleCost.toFixed(2)} | ${spirit.abv.toFixed(1)}% ABV</small>
                     </div>
                 `).join('');
                 autocompleteList.style.display = 'block';
